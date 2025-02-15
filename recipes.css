@@ -1,0 +1,420 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('Pic/recipe222.jpg') no-repeat center center/cover; 
+    width: 100%;
+    object-fit: scale-down;
+    height: 200vh; /* Full viewport height */
+    overflow: hidden; /* Prevent scrolling */
+    background-color: rgb(5, 7, 9);
+    overflow-y: auto;  
+    background-attachment: fixed; 
+    overflow:auto;
+}
+
+/* .user-box {
+    content: "👤";
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.92);
+    font-size: 20px;
+    padding: 5px;
+    background: orangered;
+    box-shadow: 0px 4px 8px rgba(140, 46, 46, 0.2);
+    border-radius: 30px;
+    padding: 10px;
+    z-index: 1000;
+}
+.user-box:hover{
+    background-color:transparent;
+    border-color: orangered;
+    color:orangered; 
+    transition: 0.5s;
+}
+
+.user-dropdown {
+    display: none;
+    position: absolute;
+    top: 45px;
+    right: 0;
+    background: rgb(79, 46, 46);
+    width: 180px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    z-index: 1000;
+}
+
+.user-dropdown a {
+    display: block;
+    padding: 8px;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
+.user-dropdown a:hover {
+    background-color: #c39797;
+}
+
+/* User Info Modal */
+
+/* .modal {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 15px;
+    width: 250px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 2000;
+    text-align: center;
+}
+
+.modal h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.modal .close {
+    cursor: pointer;
+    color: red;
+    font-weight: bold;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+} */ */
+
+header {
+    color: orangered;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo h1 {
+    margin: 0;
+}
+
+nav ul {
+    
+    list-style: none;
+    margin: 0;
+    padding-right: 33rem;
+    display: flex;
+}
+
+nav ul li {
+    padding-top: 20px;
+    margin-left: 2.48rem;
+}
+nav ul li a:hover{
+    color:orangered;
+}
+nav ul li a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-weight: bold;
+}
+  
+
+.login {
+    margin-top: -1rem;
+    margin-left: 45rem; /* Add space between nav links and buttons */
+}
+.login a {
+   
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    margin-left: 1rem;
+    border-radius: 17px;
+    font-weight: bold;
+}
+
+.sign-in {
+    color: white;
+    border: 1.2px solid white; 
+}
+
+.sign-in:hover {
+    color: orangered;
+    border-color: orangered; /* Change border on hover */
+    transition: 0.5s;
+   
+}
+.log-in {
+    background-color:orangered;
+    color: black;
+    border: 1.2px solid ; 
+}
+
+.log-in:hover {
+    background-color:transparent;
+    border-color: orangered;
+    color:orangered; /* Change border on hover */
+    transition: 0.5s;
+    
+}
+main {
+    color: white;
+}
+main h1{
+    position: absolute;
+    top: 160px;
+    left: 350px;
+}
+main p{
+    position: absolute;
+    top: 205px;
+    left: 380px;
+}
+
+.active1:active{
+    color:orangered;
+  }
+a.active1{
+    color: orangered;
+    font-weight: bold;
+  }
+
+
+
+.search-container {
+    margin: 20px auto;
+    width: 50%;
+}
+input {
+    margin-top: 165px;
+    margin-left: 110px;
+    width: 40%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+button {
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: orangered;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    color: white;
+}
+.categories {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px;
+}
+.category {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ddd;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+    margin-top: 80px; 
+}
+.category:hover, .category.active {
+    background-color: orange;
+    color: white;
+}
+.recipe-results {
+    margin-top: 20px;
+}
+
+/* food recipe */
+
+.food-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    
+}
+
+.food-item {
+    position: relative;
+    width: 200px;
+    text-align: center;
+}
+
+.food-item img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+
+.food-item p {
+    color: white;
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Hover effect */
+.food-item:hover img {
+    transform: scale(1.1);  /* Slight zoom-in effect */
+}
+
+.food-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Modal Styling */
+
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.recipe-img img {
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+}
+
+/* Scrollable content inside modal */
+.recipe-content {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.food-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.separator {
+    border: none; /* Remove default border */
+    height: 2px; /* Set the thickness of the line */
+    background-color: #333; /* Color of the line */
+    margin: 20px 0; /* Spacing above and below the line */
+    box-shadow: 0 4px 6px rgba(194, 181, 181, 0.3); /* Shadow effect */
+
+}
+
+
+/* 5araaa */
+/* Modal background styling */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1; /* Ensure modal is above other content */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+   
+    overflow: hidden; /* Prevent scrolling on background */
+}
+
+/* Content inside the modal */
+.modal-content {
+    background-color: #3a3131e0; /* Light gray background */
+    padding: 20px;
+    border-radius: 8px; /* Rounded corners for the modal */
+    width: 80%;
+    max-width: 600px;
+    max-height: 80vh; /* Limit the modal's height */
+    overflow-y: auto; /* Allow scrolling inside the modal if content overflows */
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    position: relative;
+    margin: auto;
+    top: 50%;
+    transform: translateY(-50%); /* This keeps it vertically centered */
+}
+
+/* Image in the modal */
+.modal img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Textarea styling */
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+    resize: vertical;
+    height: 100px;
+}
+
+/* Close button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Disable background scroll when modal is open */
+body.modal-open {
+    overflow: hidden; /* Prevent scrolling of the background page */
+}
+
+/* Modal content should have its own scrolling if necessary */
+.modal-content {
+    overflow-y: auto; /* Allow only the modal content to scroll */
+    -webkit-overflow-scrolling: touch;
+}
+
+.modal-list {
+    text-align: left;
+    padding-left: 20px;
+}
+
+.modal-list li {
+    margin-bottom: 5px;
+    color: white;
+}
+
+.modal-heading {
+    color: orangered;
+    font-size: 20px;
+    margin-top: 15px;
+}
+
+.head{
+    color: orangered;
+    font-size: 20px;
+}
+.head1{
+    color: white;
+    font-size: 20px;
+}

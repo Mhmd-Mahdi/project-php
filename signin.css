@@ -1,0 +1,202 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: url('recipe222.jpg') no-repeat center center/cover; 
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align to the left */
+    justify-content: flex-start;
+    min-height: 100vh;
+    overflow: hidden;
+    padding: 30px;
+}
+
+/* --- FORM CONTAINER (NO BACKGROUND) --- */
+nav {
+    width: 100%;
+    max-width: 400px;
+    margin-top: -10px; /* Moves form higher */
+}
+
+nav form {
+    display: flex;
+    flex-direction: column;
+}
+
+nav input {
+    padding: 10px;
+    margin: 5px 0; /* Adjust spacing */
+    border: 1px solid #999;
+    border-radius: 5px;
+    font-size: 1em;
+    width: 100%;
+    min-height: 40px;
+    transition: border-color 0.3s;
+}
+
+
+
+nav input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    min-height: 45px;
+    font-size: 1.1em;
+}
+
+
+/* --- LABELS --- */
+label {
+    font-weight: bold;
+    margin-top: 8px;
+    color: white;
+    font-size: 1em;
+}
+
+/* --- LOGIN LINK (Placed Directly Below SIGNIN Button) --- */
+.login-link {
+    text-align: left;
+    margin-top: 5px;
+}
+
+.login-link p {
+    font-size: 1em;
+    color: white;
+}
+
+.login-link a {
+    text-decoration: none;
+    color: orangered;
+    font-weight: bold;
+}
+
+.login-link a:hover {
+    color: #FF7043;
+    text-decoration: none;
+}
+
+/* --- COMMUNITY MESSAGE (Moved Between Form & Bottom) --- */
+.form-header {
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    bottom: 50%;
+    left: 64%;
+    transform: translateX(-50%);
+}
+.enter{
+    color: orangered;
+}
+.form-header h2 {
+    color: white;
+    font-size: 2em;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-header h3 {
+    font-size: 1.3em;
+    color: white;
+}
+nav input[type="submit"] {
+    background-color: orangered; /* Orangered background */
+    color: white; /* White text */
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s; /* Smooth transition */
+    min-height: 45px;
+    font-size: 1.1em;
+    border: none; /* Optional: removes border */
+}
+
+nav input[type="submit"]:hover {
+    background-color: #FF7043; /* Lighter orangered on hover */
+}
+/* --- RESPONSIVENESS --- */
+@media (max-width: 1024px) {
+    body {
+        padding: 25px;
+    }
+
+    nav {
+        max-width: 380px;
+        margin-top: -5px;
+    }
+
+    .form-header h2 {
+        font-size: 1.8em;
+    }
+
+    .form-header h3 {
+        font-size: 1.2em;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        align-items: center;
+        padding: 20px;
+    }
+
+    nav {
+        width: 90%;
+        max-width: 380px;
+        margin-top: 0;
+    }
+
+    .form-header {
+        bottom: 12%;
+    }
+
+    .form-header h2 {
+        font-size: 1.6em;
+    }
+
+    .form-header h3 {
+        font-size: 1.1em;
+    }
+
+    .login-link {
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    nav {
+        width: 100%;
+        margin-top: 0;
+    }
+
+    .form-header {
+        bottom: 10%;
+    }
+
+    .form-header h2 {
+        font-size: 1.4em;
+    }
+
+    .form-header h3 {
+        font-size: 1em;
+    }
+
+    nav input {
+        padding: 8px;
+        min-height: 35px;
+    }
+}
+
+.error-message {
+    color: white;               /* White text */
+    font-size: 1.2em;           /* Slightly larger font */
+    position: absolute;         /* Position it absolutely */
+    top: 52%;                   /* Place it at the middle of the screen */
+    left:57%;
+}

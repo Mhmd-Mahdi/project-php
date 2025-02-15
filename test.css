@@ -1,0 +1,77 @@
+/* the box of the user */
+.user-box {
+    content: "👤";
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.92);
+    font-size: 20px;
+    padding: 5px;
+    background: orangered;
+    box-shadow: 0px 4px 8px rgba(140, 46, 46, 0.2);
+    border-radius: 30px;
+    padding: 10px;
+    z-index: 1000;
+}
+.user-box:hover{
+    background-color:transparent;
+    border-color: orangered;
+    color:orangered; 
+    transition: 0.5s;
+}
+
+.user-dropdown {
+    display: none;
+    position: absolute;
+    top: 45px;
+    right: 0;
+    background: rgb(79, 46, 46);
+    width: 180px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    z-index: 1000;
+}
+
+.user-dropdown a {
+    display: block;
+    padding: 8px;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
+.user-dropdown a:hover {
+    background-color: #c39797;
+}
+
+/* User Info Modal */
+
+.modal {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 15px;
+    width: 250px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 2000;
+    text-align: center;
+}
+
+.modal h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.modal .close {
+    cursor: pointer;
+    color: red;
+    font-weight: bold;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+}

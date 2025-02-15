@@ -1,0 +1,152 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('food.jpg') no-repeat center center/cover; 
+    height: 100vh; 
+    overflow: hidden;
+}
+
+header {
+    color: orangered;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo h1 {
+    margin: 0;
+}
+
+nav ul {
+    
+    list-style: none;
+    margin: 0;
+    padding-right: 33rem;
+    display: flex;
+}
+
+nav ul li {
+    padding-top: 20px;
+    margin-left: 2.8rem;
+}
+nav ul li a:hover{
+    color:orangered;
+}
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.active:active{
+    color:orangered;
+  }
+a.active{
+    color: orangered;
+    font-weight: bold;
+  }
+.login {
+    margin-top: -1rem;
+    margin-left: 45rem; 
+}
+.login a {
+   
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    margin-left: 1rem;
+    border-radius: 17px;
+    font-weight: bold;
+}
+
+.sign-in {
+    color: white;
+    border: 1.2px solid white; 
+}
+
+.sign-in:hover {
+    color: orangered;
+    border-color: orangered; 
+    transition: 0.5s;
+   
+}
+.log-in {
+    background-color:orangered;
+    color: black;
+    border: 1.2px solid ; 
+}
+
+.log-in:hover {
+        background-color:transparent;
+        border-color: orangered;
+        color:orangered; 
+        transition: 0.5s;
+    
+}
+.log-out {
+    background-color:orangered;
+    color: black;
+    border: 1.2px solid ; 
+}
+
+.log-out:hover {
+    background-color:transparent;
+    border-color: orangered;
+    color:orangered; 
+    transition: 0.5s;
+    
+}
+
+.hero {
+    color: white;
+    margin-left:60px; 
+    padding: 7rem 2rem;
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 15px;
+    margin-bottom: 2rem;
+
+}
+
+.hero .btn {
+    background-color: orangered;
+    color: white;
+    padding: 0.8rem 0.8rem;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    display: inline-block;
+}
+.hero .btn:hover{
+    transition: 0.5s;
+    transform: scale(1.1);
+}
+
+.circular-image {
+    width: 400px; 
+    height: 400px;
+    border-radius: 50%; 
+    object-fit: cover; /* Ensures the image fits properly */
+    animation: rotate 45s linear infinite; /* Apply rotation animation */
+    position: absolute;
+    top: 150px;  /* Move down */
+    left: 750px; /* Move right */
+    transform: scale(4); /* Permanent zoom in by 20% */
+
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
