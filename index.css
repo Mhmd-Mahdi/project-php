@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: url('food.jpg') no-repeat center center/cover; 
+    background: url('Pic/food.jpg') no-repeat center center/cover; 
     height: 100vh; 
     overflow: hidden;
 }
@@ -15,8 +15,9 @@ header {
     align-items: center;
 }
 
-header .logo h1 {
-    margin: 0;
+header .logo h2 {
+    font-size: 28px;
+    color: chartreuse;
 }
 
 nav ul {

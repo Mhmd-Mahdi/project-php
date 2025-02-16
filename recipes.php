@@ -1,4 +1,18 @@
-<?php session_start();
+<?php
+    
+    session_start();
+    $db_server = "localhost";
+    $db_user = "root";
+    $db_pass = "";
+    $db_name = "users";
+    $conn = null;
+
+    try {
+        $conn = mysqli_connect($db_server, $db_user, $db_pass, $db_name);
+    } catch (mysqli_sql_exception) {
+        echo "<div class='error-message'>Can't Connect!</div>";
+    }
+    
 
 
 ?>
@@ -14,7 +28,7 @@
 <body>
 <header>
     <div class="logo">
-        <h1>Food Recipes</h1>
+        <h1></h1>
     </div>
     <nav>
         <ul>
