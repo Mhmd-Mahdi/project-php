@@ -9,7 +9,8 @@
 <body>
     <header>
         <div class="logo">
-            <h1></h1>
+            <pre><h2>Quick and Tasty
+    Recipes</h2></pre>
         </div>
     <nav>
             <ul>
@@ -43,6 +44,6 @@
             <a href="recipes.php" class="btn">Explore Recipes</a>
         </section>
     </main>
-    <img src="plate1.jpg" alt="Rotating Circle" class="circular-image">
+    <img src="Pic/plate1.jpg" alt="Rotating Circle" class="circular-image">
 </body>
 </html>
