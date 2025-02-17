@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $email = filter_var(trim($_POST['useremail']), FILTER_SANITIZE_EMAIL);
     $user_input = trim($_POST['username']);
     $password = trim($_POST['userpassword']);
-
+    // enter code for cheking password
     // Validate username
     if (!(strlen($user_input) > 8) && preg_match('/[^a-zA-Z0-9]/', $user_input)) {
         echo "<script>alert('Username must be at least 8 characters and contain only letters and numbers.');</script>";
