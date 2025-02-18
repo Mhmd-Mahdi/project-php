@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 session_start();
 
 $db_server = "localhost";
@@ -10,13 +13,12 @@ $conn = null;
 try {
     $conn = mysqli_connect($db_server, $db_user, $db_pass, $db_name);
 } catch (mysqli_sql_exception) {
-    echo "<div class='error-message'>Can't Connect!</div>";
+    die("Can't Connect!");
 }
 
-
-// Handle signup form submission
+$message_pass=" ";
+$message_uasername=" ";
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
-    // Validate and sanitize inputs
     $first_name = trim($_POST['first_name']);
     $first_name = ucwords($first_name);
     $last_name = trim($_POST['last_name']);
@@ -25,14 +27,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $email = filter_var(trim($_POST['useremail']), FILTER_SANITIZE_EMAIL);
     $user_input = trim($_POST['username']);
     $password = trim($_POST['userpassword']);
-    // enter code for cheking password
-    // Validate username
-    if (!(strlen($user_input) > 8) && preg_match('/[^a-zA-Z0-9]/', $user_input)) {
-        echo "<script>alert('Username must be at least 8 characters and contain only letters and numbers.');</script>";
+    function check_space($str){
+        return strpos($str," ") === false;
+    }
+    function check_substr($str1,$str2){
+        return stripos($str1,$str2) === false;
+    }
+    $len_pass=strlen($password);
+
+    if(!($len_pass >= 8 && check_space(($password)) && check_substr($user_input,$password))){
+        $message_pass="Password must be at least 8 characters long, contain no spaces, and must not be part of the username.";
         exit;
     }
-
-    // Check if username exists
+    if (!(strlen($user_input) > 8) && preg_match('/[^a-zA-Z0-9]/', $user_input)) {
+            $message_username="Username must be at least 8 characters and contain only letters and numbers.";
+        exit;
+    }
     $sql = "SELECT username FROM user_info WHERE username = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $user_input);
@@ -46,23 +56,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     }
     $stmt->close();
 
-    // Hash the password
     $hash_password = password_hash($password, PASSWORD_DEFAULT);
-
-    // Insert new user with prepared statement
     $sql = "INSERT INTO user_info (full_name,username, user_password, email) VALUES (? ,? , ?, ?)";
     $stmt = $conn->prepare($sql);
 
     if (!$stmt) {
-        die("Error preparing statement: " . $conn->error);
+        echo "<script>alert('Some thing went fullet');</script>";
     }
 
     $stmt->bind_param("ssss",$user_full_name, $user_input, $hash_password, $email);
 
     if ($stmt->execute()) {
-        // Set session variables
-        $_SESSION['user'] = $user_input; // Store username in session
-        $_SESSION['user_full_name'] = $user_full_name; // Store full name in session
+        $_SESSION['user'] = $user_input;
+        $_SESSION['user_full_name'] = $user_full_name; 
         $_SESSION['login']=true;
         header("Location: index.php");
         exit();
@@ -73,7 +79,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $stmt->close();
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -92,8 +97,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
             <input type="email" name="useremail" id="email" placeholder="example@gmail.com" required title="Please enter your email"><br>
             <label for="user_name">Username</label><br>
             <input type="text" name="username" id="user_name" placeholder="Username" required title="Please Enter Username"><br>
+            <?php echo "<p>". $message_uasername ."</p>"; ?>
             <label for="password">Password</label><br>
             <input type="password" name="userpassword" id="password" placeholder="Password" required title="Please enter your password"><br>
+            <?php echo "<p>". $message_pass ."</p>"; ?>
             <input type="submit" name="submit" value="SIGNIN">
         </form>
     </nav>

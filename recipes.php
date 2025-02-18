@@ -28,9 +28,10 @@
 <body>
 <header>
     <div class="logo">
-        <h1></h1>
+    <pre><h2>Quick and Tasty
+    Recipes</h2></pre>
     </div>
-    <nav>
+    <nav class="header">
         <ul>
             <li><a href="index.php">Home</a></li>
             <li><a href="recipes.php" class="active1">Recipes</a></li>

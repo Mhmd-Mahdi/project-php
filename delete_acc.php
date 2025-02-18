@@ -1,5 +1,8 @@
 <?php
 session_start();
+echo "<pre>";
+print_r($_SESSION[""]);
+echo "</pre>";
 $db_server = "localhost";
 $db_user = "root";
 $db_pass = "";
