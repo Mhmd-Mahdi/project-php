@@ -2,7 +2,7 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-session_start();
+
 
 $db_server = "localhost";
 $db_user = "root";
@@ -27,6 +27,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $email = filter_var(trim($_POST['useremail']), FILTER_SANITIZE_EMAIL);
     $user_input = trim($_POST['username']);
     $password = trim($_POST['userpassword']);
+    $message_pass=" ";
+    $message_uasername=" ";
     function check_space($str){
         return strpos($str," ") === false;
     }
@@ -37,11 +39,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
 
     if(!($len_pass >= 8 && check_space(($password)) && check_substr($user_input,$password))){
         $message_pass="Password must be at least 8 characters long, contain no spaces, and must not be part of the username.";
-        exit;
     }
     if (!(strlen($user_input) > 8) && preg_match('/[^a-zA-Z0-9]/', $user_input)) {
-            $message_username="Username must be at least 8 characters and contain only letters and numbers.";
-        exit;
+        $message_username="Username must be at least 8 characters and contain only letters and numbers.";
+
     }
     $sql = "SELECT username FROM user_info WHERE username = ?";
     $stmt = $conn->prepare($sql);
@@ -67,6 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $stmt->bind_param("ssss",$user_full_name, $user_input, $hash_password, $email);
 
     if ($stmt->execute()) {
+        session_start();
         $_SESSION['user'] = $user_input;
         $_SESSION['user_full_name'] = $user_full_name; 
         $_SESSION['login']=true;
@@ -101,7 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
             <label for="password">Password</label><br>
             <input type="password" name="userpassword" id="password" placeholder="Password" required title="Please enter your password"><br>
             <?php echo "<p>". $message_pass ."</p>"; ?>
-            <input type="submit" name="submit" value="SIGNIN">
+            <input type="submit" name="submit" value="SIGN UP">
         </form>
     </nav>
 
