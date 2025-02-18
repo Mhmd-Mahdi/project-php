@@ -38,8 +38,19 @@
     <h3>WELCOME <?php echo htmlspecialchars($_SESSION['user_full_name']); ?></h3>
     <?php }else{ ?>
         <div class="login">
-            <a href="signin.php" class="btn sign-in">Sign In</a>
-            <a href="login.php" class="btn log-in">Login</a>
+            <?php if (isset($_SESSION['login'])): ?>
+                <div class="user-box" onclick="toggleDropdown()">
+                    <?php echo htmlspecialchars($_SESSION["user_full_name"]); ?>
+                    <div class="user-dropdown" id="userDropdown">
+                        <a onclick="openInfoModal()">User Info</a>
+                        <a href="delete_account.php" onclick="return confirm('Are you sure you want to delete your account?');">Delete Account</a>
+                        <a href="logout.php">Logout</a>
+                    </div>
+                </div>
+            <?php else: ?>
+                <a href="signin.php" class="btn sign-in">Sign Up</a>
+                <a href="login.php" class="btn log-in">LogIn</a>
+            <?php endif; ?>
         </div>   
     <?php } ?>
         </nav>
@@ -48,7 +59,39 @@
         <h1>Welcome to our Recipe Collection</h1>
         <p>Discover delicious recipes that bring flavor and joy to your kitchen</p>
     </main>
+<!-- User Info Modal -->
+<div id="infoModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <h2>User Info</h2>
+    <p><strong>Full Name:</strong> <?php echo htmlspecialchars($_SESSION["user_full_name"]); ?></p>
+    <p><strong>Email:</strong> <!-- INSERT EMAIL FROM DATABASE HERE --></p>
+    <p><strong>Joined:</strong> <!-- INSERT JOIN DATE FROM DATABASE HERE --></p>
+</div>
 
+<script>
+    function toggleDropdown() {
+        let dropdown = document.getElementById("userDropdown");
+        dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    }
+
+    function openInfoModal() {
+        document.getElementById("infoModal").style.display = "block";
+    }
+
+    function closeModal() {
+        document.getElementById("infoModal").style.display = "none";
+    }
+
+    // Close dropdown if clicked outside
+    window.onclick = function(event) {
+        if (!event.target.matches('.user-box')) {
+            let dropdown = document.getElementById("userDropdown");
+            if (dropdown.style.display === "block") {
+                dropdown.style.display = "none";
+            }
+        }
+    };
+</script>
 
 <div class="categories">
 <a href="recipes.php">
