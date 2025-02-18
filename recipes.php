@@ -28,7 +28,7 @@
 <body>
 <header>
     <div class="logo">
-    <pre><h2>Quick and Tasty
+        <pre><h2> Quick & Tasty 
     Recipes</h2></pre>
     </div>
     <nav class="header">
@@ -93,13 +93,6 @@
         }
     };
 </script>
-<!-- Search Box -->
-<div class="search-container">
-<form method="POST">
-            <input type="text" name="search" placeholder="Type food name...">
-            <button type="submit">Search</button>
-        </form>
-</div>
 
 <div class="categories">
     <a href="recipes.php">
@@ -121,7 +114,7 @@
 
     
 </div>
-<hr class="separator">
+
 
 <!--  Food Grid -->
      <div class="food-grid">

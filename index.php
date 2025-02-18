@@ -9,7 +9,7 @@
 <body>
     <header>
         <div class="logo">
-            <pre><h2>Quick and Tasty
+        <pre><h2> Quick & Tasty 
     Recipes</h2></pre>
         </div>
     <nav>

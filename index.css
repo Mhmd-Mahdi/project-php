@@ -16,8 +16,9 @@ header {
 }
 
 header .logo h2 {
-    font-size: 28px;
-    color: chartreuse;
+    font-size: 20px;
+    color: orangered;
+    margin-top: 14px;
 }
 
 nav ul {

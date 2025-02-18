@@ -24,7 +24,8 @@
 <body>
 <header>
         <div class="logo">
-            <h1>Food Recipes</h1>
+        <pre><h2> Quick & Tasty 
+    Recipes</h2></pre>           
         </div>
         <nav>
             <ul>
@@ -47,22 +48,17 @@
         <h1>Welcome to our Recipe Collection</h1>
         <p>Discover delicious recipes that bring flavor and joy to your kitchen</p>
     </main>
-<div class="search-container">
-<form method="POST">
-            <input type="text" name="search" placeholder="Type food name...">
-            <button type="submit">Search</button>
-        </form>
-</div>
+
 
 <div class="categories">
 <a href="recipes.php">
-    <div class="category active" onclick="filterCategory('all')">All</div>
+    <div class="category" onclick="filterCategory('all')">All</div>
     </a>
     <a href="recipeschicken.php">
     <div class="category" onclick="filterCategory('chicken')">Chicken</div>
     </a>
     <a href="recipesbeef.php">
-    <div class="category" onclick="filterCategory('beef')">Beef</div>
+    <div class="category active" onclick="filterCategory('beef')">Beef</div>
     </a>
     <a href="recipesfish.php">
     <div class="category" onclick="filterCategory('fish')">Fish</div>
@@ -72,7 +68,7 @@
     </a>
 </div>
 </div>
-<hr class="separator">
+
 
 <!--  Food Grid -->
      <div class="food-grid">
