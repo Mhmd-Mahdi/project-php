@@ -1,30 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>test</title>
-    <link rel="stylesheet" href="test.css">
-</head>
-<body>
-<div class="login">
-    <?php if(isset($_SESSION['login'])): ?>
-        <div class="dropdown">
-            <button class="dropbtn" onclick="toggleDropdown()">
-                <?php echo htmlspecialchars($_SESSION["user_full_name"]); ?>
-            </button>
-            <div class="dropdown-content" id="dropdownMenu">
-                <a href="profile.php">User Info</a>
-                <a href="delete_account.php" onclick="return confirm('Are you sure you want to delete your account?');">Delete Account</a>
-                <a href="logout.php">Logout</a>
-            </div>
-        </div>
-    <?php else: ?>
-        <a href="signin.php" class="btn sign-in">Sign Up</a>
-        <a href="login.php" class="btn log-in">LogIn</a>
-    <?php endif; ?>
-</div>
+<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 
-</body>
-</html>
+$db_server = "localhost";
+$db_user = "root";
+$db_pass = "";
+$db_name = "users";
+$conn ="";
+
+try {
+    $conn = mysqli_connect($db_server, $db_user, $db_pass, $db_name);
+} catch (mysqli_sql_exception) {
+    die("Can't Connect!");
+}
+$user_input = $_SESSION["user"]; 
+$sql = "SELECT user_id FROM users WHERE username = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $user_input);
+$stmt->execute();
+$stmt->store_result();
+if ($stmt->num_rows > 0) {
+    $stmt->bind_result($user_id);
+    $stmt->fetch();
+    $_SESSION['user_id'] = $user_id;
+}
+$stmt->close();
+$conn->close();
+?>
