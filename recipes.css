@@ -167,6 +167,7 @@ a.active1{
 }
 .categories a{
     text-decoration: none;
+    color: black;
 }
 .category {
     width: 80px;
