@@ -50,7 +50,7 @@
             <?php else: ?>
                 <a href="signin.php" class="btn sign-in">Sign Up</a>
                 <a href="login.php" class="btn log-in">LogIn</a>
-            <?php endif; ?>
+            <?php endif; ?>    
         </div>   
     <?php } ?>
         </nav>
@@ -61,35 +61,20 @@
     </main>
 <!-- User Info Modal -->
 <div id="infoModal" class="modal">
-    <span class="close" onclick="closeModal()">&times;</span>
+    <span class="close" onclick="closeModal('infoModal')">&times;</span>
     <h2>User Info</h2>
     <p><strong>Full Name:</strong> <?php echo htmlspecialchars($_SESSION["user_full_name"]); ?></p>
     <p><strong>Email:</strong> <!-- INSERT EMAIL FROM DATABASE HERE --></p>
     <p><strong>Joined:</strong> <!-- INSERT JOIN DATE FROM DATABASE HERE --></p>
 </div>
-
-<script>
-    function toggleDropdown() {
-        let dropdown = document.getElementById("userDropdown");
-        dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
-    }
-
-    function openInfoModal() {
-        document.getElementById("infoModal").style.display = "block";
-    }
-
-    function closeModal() {
-        document.getElementById("infoModal").style.display = "none";
-    }
-    window.onclick = function(event) {
-        if (!event.target.matches('.user-box')) {
-            let dropdown = document.getElementById("userDropdown");
-            if (dropdown.style.display === "block") {
-                dropdown.style.display = "none";
-            }
-        }
-    };
-</script>
+<!-- Recipe Modal-->
+<div id="recipeModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('recipeModal')">&times;</span>
+        <h2>Recipe Details</h2>
+        <p>Recipe content goes here...</p>
+    </div>
+</div>
 
 <div class="categories">
 <a href="recipes.php">
@@ -109,7 +94,6 @@
     </a>
 </div>
 </div>
-
 
 <!--  Food Grid -->
      <div class="food-grid">

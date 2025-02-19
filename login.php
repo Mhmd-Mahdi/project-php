@@ -45,9 +45,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $stmt->fetch();
                         $_SESSION['user_id'] = $user_id;
                     }
-                    $_SESSION['user_full_name'] = $user_full_name;
+                    $_SESSION['full_name'] = $user_full_name;
                     $_SESSION['login'] = true;
-                    $_SESSION['user'] = $db_username;
+                    $_SESSION['username'] = $db_username;
                     header("location: index.php");
                     exit();
                 } else {

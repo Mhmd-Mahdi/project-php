@@ -8,7 +8,7 @@ $db_server = "localhost";
 $db_user = "root";
 $db_pass = "";
 $db_name = "users";
-$conn = null;
+$conn = "";
 
 try {
     $conn = mysqli_connect($db_server, $db_user, $db_pass, $db_name);
@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
 
     if ($stmt->num_rows > 0) {
         echo "<script>alert('Username already taken.');</script>";
-        $stmt->bind_result($user_input,$user_id)
+        $stmt->bind_result($user_input,$user_id);
         $stmt->close();
         exit;
     }
@@ -64,8 +64,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $stmt->bind_param("ssss",$user_full_name, $user_input, $hash_password, $email);
     if ($stmt->execute()) {
         session_start();
-        $_SESSION['user'] = $user_input;
-        $_SESSION['user_full_name'] = $user_full_name; 
+        $_SESSION['username'] = $user_input;
+        $_SESSION['full_name'] = $user_full_name; 
         $_SESSION['login']=true;
         header("Location: index.php");
         exit();

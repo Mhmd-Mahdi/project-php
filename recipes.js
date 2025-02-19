@@ -4,7 +4,13 @@ function openModal(modalId) {
     // Disable background scrolling
     document.body.classList.add("modal-open");
 }
-
+function toggleDropdown() {
+    let dropdown = document.getElementById("userDropdown");
+    dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+}
+function openInfoModal() {
+    document.getElementById("infoModal").style.display = "block";
+}
 // Close modal
 function closeModal(modalId) {
     document.getElementById(modalId).style.display = "none";

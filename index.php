@@ -23,7 +23,7 @@
             <?php 
                 session_start();
                 if(isset($_SESSION['login'])){
-                    $userFullName = $_SESSION["user_full_name"];
+                    $userFullName = $_SESSION["full_name"];
                     echo "Welcome, " . htmlspecialchars($userFullName);
                     echo "<a href='logout.php' class='btn log-out'>logout</a>";
                 }else{
