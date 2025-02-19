@@ -10,7 +10,7 @@ try {
 } catch (mysqli_sql_exception) {
     echo "<div class='error-message'>Can't Connect!</div>";
 }
-$user_input = $_SESSION["user"]; 
+$user_input = $_SESSION["username"]; 
 $sql = "SELECT user_id FROM user_info WHERE username = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $user_input);

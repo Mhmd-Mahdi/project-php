@@ -12,10 +12,6 @@
     } catch (mysqli_sql_exception) {
         echo "<div class='error-message'>Can't Connect!</div>";
     }
-// $sql="SELECT time_join FROM user_info WHERE username = ?";
-// $stmt=$conn->prepare($sql);
-// $stmt->bind_param("s",$_SESSION['user']);
-
 
 ?>
 <!DOCTYPE html>
@@ -43,7 +39,7 @@
         <div class="login">
             <?php if (isset($_SESSION['login'])): ?>
                 <div class="user-box" onclick="toggleDropdown()">
-                    <?php echo htmlspecialchars($_SESSION["user_full_name"]); ?>
+                    <?php echo htmlspecialchars($_SESSION["full_name"]); ?>
                     <div class="user-dropdown" id="userDropdown">
                         <a onclick="openInfoModal()">User Info</a>
                         <a href="delete_account.php" onclick="return confirm('Are you sure you want to delete your account?');">Delete Account</a>

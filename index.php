@@ -1,3 +1,20 @@
+<?php
+session_start();
+
+$db_server = "localhost";
+$db_user = "root";
+$db_pass = "";
+$db_name = "users"; 
+$conn = "";
+
+try {
+    $conn = mysqli_connect($db_server, $db_user, $db_pass, $db_name);
+} catch (mysqli_sql_exception) {
+    echo "<div class='error-message'>Can't Connect!</div>";
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,9 +38,22 @@
             </ul>
         <div class="login">
             <?php 
-                session_start();
                 if(isset($_SESSION['login'])){
-                    $userFullName = $_SESSION["user_full_name"];
+                    $username=$_SESSION["username"];
+                    $sql="SELECT user_id,full_name,email,time_join FROM user_info WHERE username = ?";
+                    $stmt=$conn->prepare($sql);
+                    $stmt->bind_param("s",$username);
+                    $stmt->execute();
+                    $stmt->store_result();
+                    if($stmt->num_rows > 0){
+                        $stmt->bind_result($id,$name,$email,$time);
+                        $stmt->fetch();
+                        $_SESSION["user_id"]=$id;
+                        $_SESSION["full_name"]=$name;
+                        $_SESSION["email"]=$email;
+                        $_SESSION["time"]=$time;
+                    }
+                    $userFullName = $_SESSION["full_name"];
                     echo "Welcome, " . htmlspecialchars($userFullName);
                     echo "<a href='logout.php' class='btn log-out'>logout</a>";
                 }else{
