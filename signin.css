@@ -1,4 +1,3 @@
-/* General Reset */
 * {
     margin: 0;
     padding: 0;
@@ -16,8 +15,15 @@ body {
     overflow: hidden;
     padding: 30px;
 }
-
-/* --- FORM CONTAINER (NO BACKGROUND) --- */
+.message {
+    color: chartreuse;
+    padding: 0.5px;
+    font-size: 16px;
+    font-weight: bold;
+    animation: message 5s ease-in-out forwards;
+    position: relative;
+    bottom: 25px;
+}
 nav {
     width: 100%;
     max-width: 400px;

@@ -20,15 +20,32 @@ $message_pass=" ";
 $message_uasername=" ";
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $first_name = trim($_POST['first_name']);
-    $first_name = ucwords($first_name);
+    $first_name = ucfirst($first_name);
     $last_name = trim($_POST['last_name']);
     $last_name = ucfirst($last_name);
     $user_full_name = $first_name . " " . $last_name;
     $email = filter_var(trim($_POST['useremail']), FILTER_SANITIZE_EMAIL);
     $user_input = trim($_POST['username']);
-    $password = trim($_POST['userpassword']);
+    $password = $_POST['userpassword'];
     $message_pass=" ";
     $message_uasername=" ";
+
+    if (!(strlen($user_input) > 8) && preg_match('/[^a-zA-Z0-9]/', $user_input)) {
+        $message_username="Username must be at least 8 characters and contain only letters and numbers.";
+
+    }
+    $sql = "SELECT username FROM user_info WHERE username = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $user_input);
+    $stmt->execute();//buffer
+    $stmt->store_result();
+
+    if ($stmt->num_rows > 0) {
+        echo "<script>alert('Username already taken.');</script>";
+        $stmt->close();
+        exit;
+    }
+    $stmt->close();
     function check_space($str){
         return strpos($str," ") === false;
     }
@@ -39,34 +56,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
 
     if(!($len_pass >= 8 && check_space(($password)) && check_substr($user_input,$password))){
         $message_pass="Password must be at least 8 characters long, contain no spaces, and must not be part of the username.";
-    }
-    if (!(strlen($user_input) > 8) && preg_match('/[^a-zA-Z0-9]/', $user_input)) {
-        $message_username="Username must be at least 8 characters and contain only letters and numbers.";
-
-    }
-    $sql = "SELECT username FROM user_info WHERE username = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $user_input);
-    $stmt->execute();
-    $stmt->store_result();
-
-    if ($stmt->num_rows > 0) {
-        echo "<script>alert('Username already taken.');</script>";
-        $stmt->close();
-        exit;
-    }
-    $stmt->close();
-
+    }else{
     $hash_password = password_hash($password, PASSWORD_DEFAULT);
     $sql = "INSERT INTO user_info (full_name,username, user_password, email) VALUES (? ,? , ?, ?)";
     $stmt = $conn->prepare($sql);
-
-    if (!$stmt) {
-        echo "<script>alert('Some thing went fullet');</script>";
-    }
-
     $stmt->bind_param("ssss",$user_full_name, $user_input, $hash_password, $email);
-
     if ($stmt->execute()) {
         session_start();
         $_SESSION['user'] = $user_input;
@@ -77,8 +71,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     } else {
         echo "<script>alert('Error: " . addslashes($stmt->error) . "');</script>";
     }
+}
 
-    $stmt->close();
 }
 ?>
 <!DOCTYPE html>
@@ -102,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
             <?php echo "<p>". $message_uasername ."</p>"; ?>
             <label for="password">Password</label><br>
             <input type="password" name="userpassword" id="password" placeholder="Password" required title="Please enter your password"><br>
-            <?php echo "<p>". $message_pass ."</p>"; ?>
+            <span clase="message"><?php echo  $message_pass; ?></span>
             <input type="submit" name="submit" value="SIGN UP">
         </form>
     </nav>
