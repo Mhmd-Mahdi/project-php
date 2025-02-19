@@ -40,7 +40,7 @@
         <div class="login">
             <?php if (isset($_SESSION['login'])): ?>
                 <div class="user-box" onclick="toggleDropdown()">
-                    <?php echo htmlspecialchars($_SESSION["user_full_name"]); ?>
+                    <?php echo htmlspecialchars($_SESSION["full_name"]); ?>
                     <div class="user-dropdown" id="userDropdown">
                         <a onclick="openInfoModal()">User Info</a>
                         <a href="delete_account.php" onclick="return confirm('Are you sure you want to delete your account?');">Delete Account</a>
@@ -63,7 +63,7 @@
 <div id="infoModal" class="modal">
     <span class="close" onclick="closeModal()">&times;</span>
     <h2>User Info</h2>
-    <p><strong>Full Name:</strong> <?php echo htmlspecialchars($_SESSION["user_full_name"]); ?></p>
+    <p><strong>Full Name:</strong> <?php echo htmlspecialchars($_SESSION["full_name"]); ?></p>
     <p><strong>Email:</strong> <!-- INSERT EMAIL FROM DATABASE HERE --></p>
     <p><strong>Joined:</strong> <!-- INSERT JOIN DATE FROM DATABASE HERE --></p>
 </div>
