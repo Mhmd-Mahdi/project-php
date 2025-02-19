@@ -12,7 +12,9 @@
     } catch (mysqli_sql_exception) {
         echo "<div class='error-message'>Can't Connect!</div>";
     }
-    
+// $sql="SELECT time_join FROM user_info WHERE username = ?";
+// $stmt=$conn->prepare($sql);
+// $stmt->bind_param("s",$_SESSION['user']);
 
 
 ?>

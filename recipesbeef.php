@@ -81,8 +81,6 @@
     function closeModal() {
         document.getElementById("infoModal").style.display = "none";
     }
-
-    // Close dropdown if clicked outside
     window.onclick = function(event) {
         if (!event.target.matches('.user-box')) {
             let dropdown = document.getElementById("userDropdown");

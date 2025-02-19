@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
         $message_username="Username must be at least 8 characters and contain only letters and numbers.";
 
     }
-    $sql = "SELECT username FROM user_info WHERE username = ?";
+    $sql = "SELECT username,user_id FROM user_info WHERE username = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $user_input);
     $stmt->execute();//buffer
@@ -42,6 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
 
     if ($stmt->num_rows > 0) {
         echo "<script>alert('Username already taken.');</script>";
+        $stmt->bind_result($user_input,$user_id)
         $stmt->close();
         exit;
     }
