@@ -62,9 +62,11 @@
 <div id="infoModal" class="modal">
     <span class="close" onclick="closeModal()">&times;</span>
     <h2>User Info</h2>
-    <p><strong>Full Name:</strong> <?php echo htmlspecialchars($_SESSION["user_full_name"]); ?></p>
-    <p><strong>Email:</strong> <!-- INSERT EMAIL FROM DATABASE HERE --></p>
-    <p><strong>Joined:</strong> <!-- INSERT JOIN DATE FROM DATABASE HERE --></p>
+    <p><strong>ID : </strong> <?php echo $_SESSION["user_id"] ?> </p>
+    <p><strong>Full Name : </strong> <?php echo htmlspecialchars($_SESSION["full_name"]); ?></p>
+    <p><strong>Email : </strong> <?php echo $_SESSION["email"] ?> </p>
+    <p><strong>Joined : </strong> <?php echo $_SESSION["time"] ?> </p>
+    
 </div>
 
 <script>
