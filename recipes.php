@@ -34,7 +34,7 @@
             <li><a href="index.php">Home</a></li>
             <li><a href="recipes.php" class="active1">Recipes</a></li>
             <li><a href="add.php">About</a></li>
-            <li><a href="contact.php">Contact</a></li>
+            <li><a href="contact.php">Favorite</a></li>
         </ul>
         <div class="login">
             <?php if (isset($_SESSION['login'])): ?>
