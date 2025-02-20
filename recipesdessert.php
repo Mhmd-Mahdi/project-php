@@ -61,7 +61,7 @@
     </main>
 <!-- User Info Modal -->
 <div id="infoModal" class="modal">
-    <span class="close" onclick="closeModal()">&times;</span>
+    <span class="close" onclick="closeModal('infoModal')">&times;</span>
     <h2>User Info</h2>
     <p><strong>ID : </strong> <?php echo $_SESSION["user_id"] ?> </p>
     <p><strong>Full Name : </strong> <?php echo htmlspecialchars($_SESSION["full_name"]); ?></p>
@@ -69,30 +69,14 @@
     <p><strong>Joined : </strong> <?php echo $_SESSION["time"] ?> </p>
 </div>
 
-<script>
-    function toggleDropdown() {
-        let dropdown = document.getElementById("userDropdown");
-        dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
-    }
-
-    function openInfoModal() {
-        document.getElementById("infoModal").style.display = "block";
-    }
-
-    function closeModal() {
-        document.getElementById("infoModal").style.display = "none";
-    }
-
-    // Close dropdown if clicked outside
-    window.onclick = function(event) {
-        if (!event.target.matches('.user-box')) {
-            let dropdown = document.getElementById("userDropdown");
-            if (dropdown.style.display === "block") {
-                dropdown.style.display = "none";
-            }
-        }
-    };
-</script>
+<!-- Recipe Modal-->
+<div id="recipeModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('recipeModal')">&times;</span>
+        <h2>Recipe Details</h2>
+        <p>Recipe content goes here...</p>
+    </div>
+</div>
 
 <div class="categories">
 <a href="recipes.php">
@@ -120,7 +104,7 @@
   <!-- Chocolate Cake -->
     <div class="food-item">
     <a href="#modal-chocolate-cake" class="food-link" onclick="openModal('modal-chocolate-cake')">
-        <img src="Pic/recipe1.jpg" alt="Chocolate Cake">
+        <img src="Pic/chockk.jpg" alt="Chocolate Cake">
         <p>Chocolate Cake</p>
     </a>
     </div>
@@ -129,7 +113,7 @@
     <div id="modal-chocolate-cake" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeModal('modal-chocolate-cake')">&times;</span>
-        <img src="Pic/recipe1.jpg" alt="Chocolate Cake" class="modal-img">
+        <img src="Pic/chockk.jpg" alt="Chocolate Cake" class="modal-img">
         
         <h2 class="modal-title">Chocolate Cake</h2>
 
@@ -163,7 +147,7 @@
   <!-- Ice Cream -->
     <div class="food-item">
     <a href="#modal-ice-cream" class="food-link" onclick="openModal('modal-ice-cream')">
-        <img src="Pic/recipe1.jpg" alt="Ice Cream">
+        <img src="Pic/ice.jpeg" alt="Ice Cream">
         <p>Ice Cream</p>
     </a>
     </div>
@@ -172,7 +156,7 @@
     <div id="modal-ice-cream" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeModal('modal-ice-cream')">&times;</span>
-        <img src="Pic/recipe1.jpg" alt="Ice Cream" class="modal-img">
+        <img src="Pic/ice.jpeg" alt="Ice Cream" class="modal-img">
         
         <h2 class="modal-title">Ice Cream</h2>
 
@@ -200,7 +184,7 @@
   <!-- Tiramisu -->
     <div class="food-item">
     <a href="#modal-tiramisu" class="food-link" onclick="openModal('modal-tiramisu')">
-        <img src="Pic/recipe1.jpg" alt="Tiramisu">
+        <img src="Pic/tira.jpg" alt="Tiramisu">
         <p>Tiramisu</p>
     </a>
     </div>
@@ -209,7 +193,7 @@
     <div id="modal-tiramisu" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeModal('modal-tiramisu')">&times;</span>
-        <img src="Pic/recipe1.jpg" alt="Tiramisu" class="modal-img">
+        <img src="Pic/tira.jpg" alt="Tiramisu" class="modal-img">
         
         <h2 class="modal-title">Tiramisu</h2>
 
@@ -241,7 +225,7 @@
   <!-- Cheesecake -->
     <div class="food-item">
     <a href="#modal-cheesecake" class="food-link" onclick="openModal('modal-cheesecake')">
-        <img src="Pic/recipe1.jpg" alt="Cheesecake">
+        <img src="Pic/cakee.jpg" alt="Cheesecake">
         <p>Cheesecake</p>
     </a>
     </div>
@@ -250,7 +234,7 @@
     <div id="modal-cheesecake" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeModal('modal-cheesecake')">&times;</span>
-        <img src="Pic/recipe1.jpg" alt="Cheesecake" class="modal-img">
+        <img src="Pic/cakee.jpg" alt="Cheesecake" class="modal-img">
         
         <h2 class="modal-title">Cheesecake</h2>
 
@@ -282,7 +266,7 @@
   <!-- Brownies -->
     <div class="food-item">
     <a href="#modal-brownies" class="food-link" onclick="openModal('modal-brownies')">
-        <img src="Pic/recipe1.jpg" alt="Brownies">
+        <img src="Pic/brow.jpg" alt="Brownies">
         <p>Brownies</p>
     </a>
     </div>
@@ -291,7 +275,7 @@
     <div id="modal-brownies" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeModal('modal-brownies')">&times;</span>
-        <img src="Pic/recipe1.jpg" alt="Brownies" class="modal-img">
+        <img src="Pic/brow.jpg" alt="Brownies" class="modal-img">
         
         <h2 class="modal-title">Brownies</h2>
 
@@ -323,7 +307,7 @@
   <!-- Apple Pie -->
     <div class="food-item">
     <a href="#modal-applepie" class="food-link" onclick="openModal('modal-applepie')">
-        <img src="Pic/recipe1.jpg" alt="Apple Pie">
+        <img src="Pic/applee.jpg" alt="Apple Pie">
         <p>Apple Pie</p>
     </a>
     </div>
@@ -332,7 +316,7 @@
     <div id="modal-applepie" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeModal('modal-applepie')">&times;</span>
-        <img src="Pic/recipe1.jpg" alt="Apple Pie" class="modal-img">
+        <img src="Pic/applee.jpg" alt="Apple Pie" class="modal-img">
         
         <h2 class="modal-title">Apple Pie</h2>
 
@@ -366,7 +350,7 @@
   <!-- Donuts -->
     <div class="food-item">
     <a href="#modal-donuts" class="food-link" onclick="openModal('modal-donuts')">
-        <img src="Pic/recipe1.jpg" alt="Donuts">
+        <img src="Pic/dnt.jpg" alt="Donuts">
         <p>Donuts</p>
     </a>
     </div>
@@ -375,7 +359,7 @@
     <div id="modal-donuts" class="modal">
         <div class="modal-content">
         <span class="close" onclick="closeModal('modal-donuts')">&times;</span>
-        <img src="Pic/recipe1.jpg" alt="Donuts" class="modal-img">
+        <img src="Pic/dnt.jpg" alt="Donuts" class="modal-img">
         
         <h2 class="modal-title">Donuts</h2>
 
@@ -410,7 +394,7 @@
   <!-- Crème Brûlée -->
     <div class="food-item">
     <a href="#modal-creme-brulee" class="food-link" onclick="openModal('modal-creme-brulee')">
-        <img src="Pic/recipe1.jpg" alt="Crème Brûlée">
+        <img src="Pic/brule.jpg" alt="Crème Brûlée">
         <p>Crème Brûlée</p>
     </a>
     </div>
@@ -419,7 +403,7 @@
     <div id="modal-creme-brulee" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeModal('modal-creme-brulee')">&times;</span>
-        <img src="Pic/recipe1.jpg" alt="Crème Brûlée" class="modal-img">
+        <img src="Pic/brule.jpg" alt="Crème Brûlée" class="modal-img">
         
         <h2 class="modal-title">Crème Brûlée</h2>
 

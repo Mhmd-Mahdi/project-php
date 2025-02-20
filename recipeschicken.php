@@ -61,38 +61,21 @@
     </main>
 <!-- User Info Modal -->
 <div id="infoModal" class="modal">
-    <span class="close" onclick="closeModal()">&times;</span>
+    <span class="close" onclick="closeModal('infoModal')">&times;</span>
     <h2>User Info</h2>
     <p><strong>ID : </strong> <?php echo $_SESSION["user_id"] ?> </p>
     <p><strong>Full Name : </strong> <?php echo htmlspecialchars($_SESSION["full_name"]); ?></p>
     <p><strong>Email : </strong> <?php echo $_SESSION["email"] ?> </p>
     <p><strong>Joined : </strong> <?php echo $_SESSION["time"] ?> </p>
 </div>
-
-<script>
-    function toggleDropdown() {
-        let dropdown = document.getElementById("userDropdown");
-        dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
-    }
-
-    function openInfoModal() {
-        document.getElementById("infoModal").style.display = "block";
-    }
-
-    function closeModal() {
-        document.getElementById("infoModal").style.display = "none";
-    }
-
-    // Close dropdown if clicked outside
-    window.onclick = function(event) {
-        if (!event.target.matches('.user-box')) {
-            let dropdown = document.getElementById("userDropdown");
-            if (dropdown.style.display === "block") {
-                dropdown.style.display = "none";
-            }
-        }
-    };
-</script>
+<!-- Recipe Modal-->
+<div id="recipeModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('recipeModal')">&times;</span>
+        <h2>Recipe Details</h2>
+        <p>Recipe content goes here...</p>
+    </div>
+</div>
 
 <div class="categories">
 <a href="recipes.php">
@@ -120,7 +103,7 @@
   <!-- crispy -->
     <div class="food-item">
     <a href="#modal-chicken" class="food-link" onclick="openModal('modal-chicken')">
-        <img src="Pic/recipe1.jpg" alt="Crispy Chicken">
+        <img src="Pic/crispy1.jpg" alt="Crispy Chicken">
         <p>Crispy Chicken</p>
     </a>
     </div>
@@ -129,7 +112,7 @@
     <div id="modal-chicken" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeModal('modal-chicken')">&times;</span>
-        <img src="Pic/recipe1.jpg" alt="Crispy Chicken" class="modal-img">
+        <img src="Pic/crispy1.jpg" alt="Crispy Chicken" class="modal-img">
         
         <h2 class="modal-title">Crispy Chicken</h2>
 
@@ -161,7 +144,7 @@
        
     <div class="food-item">
     <a href="#modal-fajitas" class="food-link" onclick="openModal('modal-fajitas')">
-        <img src="Pic/recipe22.jpg" alt="Fajitas">
+        <img src="Pic/fajitas1.webp" alt="Fajitas">
         <p>Fajitas</p>
     </a>
     </div>
@@ -170,7 +153,7 @@
     <div id="modal-fajitas" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeModal('modal-fajitas')">&times;</span>
-        <img src="Pic/recipe22.jpg" alt="Fajitas" class="modal-img">
+        <img src="Pic/fajitas1.webp" alt="Fajitas" class="modal-img">
         
         <h2 class="modal-title">Fajitas</h2>
 
@@ -205,7 +188,7 @@
   <!-- Chicken Burger -->
     <div class="food-item">
     <a href="#modal-chicken-burger" class="food-link" onclick="openModal('modal-chicken-burger')">
-        <img src="Pic/recipe1.jpg" alt="Chicken Burger">
+        <img src="Pic/OIP.jpeg" alt="Chicken Burger">
         <p>Chicken Burger</p>
     </a>
     </div>
@@ -214,7 +197,7 @@
     <div id="modal-chicken-burger" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeModal('modal-chicken-burger')">&times;</span>
-        <img src="Pic/recipe1.jpg" alt="Chicken Burger" class="modal-img">
+        <img src="Pic/OIP.jpeg" alt="Chicken Burger" class="modal-img">
         
         <h2 class="modal-title">Chicken Burger</h2>
 
@@ -251,7 +234,7 @@
   <!-- Grilled Chicken -->
     <div class="food-item">
     <a href="#modal-grilled-chicken" class="food-link" onclick="openModal('modal-grilled-chicken')">
-        <img src="Pic/recipe1.jpg" alt="Grilled Chicken">
+        <img src="Pic/grl1.jpg" alt="Grilled Chicken">
         <p>Grilled Chicken</p>
     </a>
     </div>
@@ -260,7 +243,7 @@
     <div id="modal-grilled-chicken" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeModal('modal-grilled-chicken')">&times;</span>
-        <img src="Pic/recipe1.jpg" alt="Grilled Chicken" class="modal-img">
+        <img src="Pic/grl1.jpg" alt="Grilled Chicken" class="modal-img">
         
         <h2 class="modal-title">Grilled Chicken</h2>
 
@@ -294,7 +277,7 @@
   <!-- Chicken Curry -->
     <div class="food-item">
     <a href="#modal-chicken-curry" class="food-link" onclick="openModal('modal-chicken-curry')">
-        <img src="Pic/recipe1.jpg" alt="Chicken Curry">
+        <img src="Pic/bhuna.jpg" alt="Chicken Curry">
         <p>Chicken Curry</p>
     </a>
     </div>
@@ -303,7 +286,7 @@
     <div id="modal-chicken-curry" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeModal('modal-chicken-curry')">&times;</span>
-        <img src="Pic/recipe1.jpg" alt="Chicken Curry" class="modal-img">
+        <img src="Pic/bhuna.jpg" alt="Chicken Curry" class="modal-img">
         
         <h2 class="modal-title">Chicken Curry</h2>
 
@@ -341,7 +324,7 @@
   <!-- Chicken Alfredo -->
     <div class="food-item">
     <a href="#modal-chicken-alfredo" class="food-link" onclick="openModal('modal-chicken-alfredo')">
-        <img src="Pic/recipe1.jpg" alt="Chicken Alfredo">
+        <img src="Pic/alfredooooo.jpg" alt="Chicken Alfredo">
         <p>Chicken Alfredo</p>
     </a>
     </div>
@@ -350,7 +333,7 @@
     <div id="modal-chicken-alfredo" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeModal('modal-chicken-alfredo')">&times;</span>
-        <img src="Pic/recipe1.jpg" alt="Chicken Alfredo" class="modal-img">
+        <img src="Pic/alfredooooo.jpg" alt="Chicken Alfredo" class="modal-img">
         
         <h2 class="modal-title">Chicken Alfredo</h2>
 
@@ -383,7 +366,7 @@
   <!-- Chicken Wings -->
     <div class="food-item">
     <a href="#modal-chicken-wings" class="food-link" onclick="openModal('modal-chicken-wings')">
-        <img src="Pic/recipe1.jpg" alt="Chicken Wings">
+        <img src="Pic/wings.jpeg" alt="Chicken Wings">
         <p>Chicken Wings</p>
     </a>
     </div>
@@ -392,7 +375,7 @@
     <div id="modal-chicken-wings" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeModal('modal-chicken-wings')">&times;</span>
-        <img src="Pic/recipe1.jpg" alt="Chicken Wings" class="modal-img">
+        <img src="Pic/wings.jpeg" alt="Chicken Wings" class="modal-img">
         
         <h2 class="modal-title">Chicken Wings</h2>
 
@@ -424,7 +407,7 @@
   <!-- Roast Chicken -->
     <div class="food-item">
     <a href="#modal-roast-chicken" class="food-link" onclick="openModal('modal-roast-chicken')">
-        <img src="Pic/recipe1.jpg" alt="Roast Chicken">
+        <img src="Pic/roast.jpg" alt="Roast Chicken">
         <p>Roast Chicken</p>
     </a>
     </div>
@@ -433,7 +416,7 @@
     <div id="modal-roast-chicken" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeModal('modal-roast-chicken')">&times;</span>
-        <img src="Pic/recipe1.jpg" alt="Roast Chicken" class="modal-img">
+        <img src="Pic/roast.jpg" alt="Roast Chicken" class="modal-img">
         
         <h2 class="modal-title">Roast Chicken</h2>
 

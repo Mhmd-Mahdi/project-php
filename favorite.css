@@ -1,0 +1,34 @@
+.fav{
+    color: orangered;
+}
+h1{
+    margin-left: 40px;
+}
+ul h3{
+    color: orangered;
+
+}
+
+h4{
+    font-size: xx-large ;
+    margin-left: 40px;
+}
+h5{
+    font-size: large;
+   
+}
+ul li{
+    
+    color: white;
+}
+li img {
+    width: 17%;
+    height: 150px;
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+    transition: transform 0.3s ease-in-out; /* Smooth hover effect for scaling */
+}
+
+/* Hover effect on image */
+li img:hover {
+    transform: scale(1.05); /* Slightly zooms in the image */
+}

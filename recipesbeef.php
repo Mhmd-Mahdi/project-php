@@ -32,10 +32,10 @@
                 <li><a href="index.php">Home</a></li>
                 <li><a href="recipes.php" class="active1">Recipes</a></li>
                 <li><a href="about.php">About</a></li>
-                <li><a href="contact.php">Contact</a></li>
+                <li><a href="favorite.php">Contact</a></li>
             </ul>
     <?php if (isset($_SESSION["in"]) && $_SESSION["in"] == true) { ?>
-    <h3>WELCOME <?php echo htmlspecialchars($_SESSION['user_full_name']); ?></h3>
+    <h3>WELCOME <?php echo htmlspecialchars($_SESSION['full_name']); ?></h3>
     <?php }else{ ?>
         <div class="login">
             <?php if (isset($_SESSION['login'])): ?>
@@ -101,16 +101,16 @@
   <!-- Beef Burger -->
     <div class="food-item">
     <a href="#modal-beef-burger" class="food-link" onclick="openModal('modal-beef-burger')">
-        <img src="Pic/recipe1.jpg" alt="Beef Burger">
+        <img src="Pic/tropers.png" alt="Beef Burger">
         <p>Beef Burger</p>
     </a>
     </div>
 
     <!-- Beef Burger Modal -->
-    <div id="modal-beef-burger" class="modal">
+<div id="modal-beef-burger" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeModal('modal-beef-burger')">&times;</span>
-        <img src="Pic/recipe1.jpg" alt="Beef Burger" class="modal-img">
+        <img src="Pic/tropers.png" alt="Beef Burger" class="modal-img">
         
         <h2 class="modal-title">Beef Burger</h2>
 
@@ -135,14 +135,23 @@
             <li>Top with fresh toppings like lettuce, tomato, and pickles to enhance flavor.</li>
         </ul>
 
+        <!-- Add to Favorites Button -->
+        <form action="save_rec.php" method="POST">
+            <input type="hidden" name="recipe_name" value="Beef Burger">
+            <input type="hidden" name="recipe_image" value="Pic/recipe1.jpg">
+            <input type="hidden" name="recipe_ingredients" value="1 lb ground beef (80% lean), 4 hamburger buns, Salt and pepper to taste, 1 onion (sliced), 4 slices cheddar cheese, 1 tomato (sliced), Pickles (optional), Lettuce leaves, Ketchup and mustard (optional)">
+            <input type="hidden" name="recipe_tips" value="Grill the burgers on medium-high heat for 4-5 minutes per side for medium doneness., For juicier burgers, avoid pressing the patties while cooking., Let the beef rest for a few minutes after grilling to preserve its juices., Top with fresh toppings like lettuce, tomato, and pickles to enhance flavor.">
+            <button type="submit">❤️ Add to Favorites</button>
+        </form>
+        
         <textarea class="modal-feedback" placeholder="Leave your feedback here..."></textarea>
-    </div>
-    </div>
 
+    </div>
+    </div>
   <!-- Steak -->
     <div class="food-item">
     <a href="#modal-steak" class="food-link" onclick="openModal('modal-steak')">
-        <img src="Pic/recipe1.jpg" alt="Steak">
+        <img src="Pic/steak.jpeg" alt="Steak">
         <p>Steak</p>
     </a>
     </div>
@@ -151,7 +160,7 @@
     <div id="modal-steak" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeModal('modal-steak')">&times;</span>
-        <img src="Pic/recipe1.jpg" alt="Steak" class="modal-img">
+        <img src="Pic/steak.jpeg" alt="Steak" class="modal-img">
         
         <h2 class="modal-title">Steak</h2>
 
@@ -173,7 +182,14 @@
             <li>Use a meat thermometer to achieve your desired doneness (e.g., 130°F for medium-rare).</li>
             <li>Let the steak rest for 5-10 minutes after cooking for better flavor and tenderness.</li>
         </ul>
-
+        <form action="save_rec.php" method="POST">
+            <input type="hidden" name="recipe_name" value="Beeef ">
+            <input type="hidden" name="recipe_image" value="Pic/recipe.jpg">
+            <input type="hidden" name="recipe_ingredients" value="1 lb ee bf (80% lean), 4 hamburger buns, Salt and pepper to taste, 1 onion (sliced), 4 slices cheddar cheese, 1 tomato (sliced), Pickles (optional), Lettuce leaves, Ketchup and mustard (optional)">
+            <input type="hidden" name="recipe_tips" value="Grill the onee dium-high heat for 4-5 minutes per side for medium doneness., For juicier burgers, avoid pressing the patties while cooking., Let the beef rest for a few minutes after grilling to preserve its juices., Top with fresh toppings like lettuce, tomato, and pickles to enhance flavor.">
+            <button type="submit">❤️ Add to Favorites</button>
+        </form>
+        
         <textarea class="modal-feedback" placeholder="Leave your feedback here..."></textarea>
     </div>
     </div>   
@@ -181,7 +197,7 @@
   <!-- Beef Tacos -->
     <div class="food-item">
     <a href="#modal-beef-tacos" class="food-link" onclick="openModal('modal-beef-tacos')">
-        <img src="Pic/recipe1.jpg" alt="Beef Tacos">
+        <img src="Pic/tacozzzz.webp" alt="Beef Tacos">
         <p>Beef Tacos</p>
     </a>
     </div>
@@ -190,7 +206,7 @@
     <div id="modal-beef-tacos" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeModal('modal-beef-tacos')">&times;</span>
-        <img src="Pic/recipe1.jpg" alt="Beef Tacos" class="modal-img">
+        <img src="Pic/tacozzzz.webp" alt="Beef Tacos" class="modal-img">
         
         <h2 class="modal-title">Beef Tacos</h2>
 
@@ -224,7 +240,7 @@
   <!-- Meatballs -->
     <div class="food-item">
     <a href="#modal-meatballs" class="food-link" onclick="openModal('modal-meatballs')">
-        <img src="Pic/recipe1.jpg" alt="Meatballs">
+        <img src="Pic/meatballs.jpg" alt="Meatballs">
         <p>Meatballs</p>
     </a>
     </div>
@@ -233,7 +249,7 @@
     <div id="modal-meatballs" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeModal('modal-meatballs')">&times;</span>
-        <img src="Pic/recipe1.jpg" alt="Meatballs" class="modal-img">
+        <img src="Pic/meatballs.jpg" alt="Meatballs" class="modal-img">
         
         <h2 class="modal-title">Meatballs</h2>
 
@@ -266,7 +282,7 @@
   <!-- Beef Stroganoff -->
     <div class="food-item">
     <a href="#modal-beef-stroganoff" class="food-link" onclick="openModal('modal-beef-stroganoff')">
-        <img src="Pic/recipe1.jpg" alt="Beef Stroganoff">
+        <img src="Pic/whatizziz.jpg" alt="Beef Stroganoff">
         <p>Beef Stroganoff</p>
     </a>
     </div>
@@ -275,7 +291,7 @@
     <div id="modal-beef-stroganoff" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeModal('modal-beef-stroganoff')">&times;</span>
-        <img src="Pic/recipe1.jpg" alt="Beef Stroganoff" class="modal-img">
+        <img src="Pic/whatizziz.jpg" alt="Beef Stroganoff" class="modal-img">
         
         <h2 class="modal-title">Beef Stroganoff</h2>
 
@@ -312,7 +328,7 @@
   <!-- Beef Stew -->
     <div class="food-item">
     <a href="#modal-beef-stew" class="food-link" onclick="openModal('modal-beef-stew')">
-        <img src="Pic/recipe1.jpg" alt="Beef Stew">
+        <img src="Pic/stew.jpg" alt="Beef Stew">
         <p>Beef Stew</p>
     </a>
     </div>
@@ -321,7 +337,7 @@
     <div id="modal-beef-stew" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeModal('modal-beef-stew')">&times;</span>
-        <img src="Pic/recipe1.jpg" alt="Beef Stew" class="modal-img">
+        <img src="Pic/stew.jpg" alt="Beef Stew" class="modal-img">
         
         <h2 class="modal-title">Beef Stew</h2>
 
@@ -356,7 +372,7 @@
   <!-- Roast Beef -->
     <div class="food-item">
     <a href="#modal-roast-beef" class="food-link" onclick="openModal('modal-roast-beef')">
-        <img src="Pic/recipe1.jpg" alt="Roast Beef">
+        <img src="Pic/roastbeef.jpg" alt="Roast Beef">
         <p>Roast Beef</p>
     </a>
     </div>
@@ -365,7 +381,7 @@
     <div id="modal-roast-beef" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeModal('modal-roast-beef')">&times;</span>
-        <img src="Pic/recipe1.jpg" alt="Roast Beef" class="modal-img">
+        <img src="Pic/roastbeef.jpg" alt="Roast Beef" class="modal-img">
         
         <h2 class="modal-title">Roast Beef</h2>
 
@@ -397,7 +413,7 @@
   <!-- Beef Kebab -->
     <div class="food-item">
     <a href="#modal-beef-kebab" class="food-link" onclick="openModal('modal-beef-kebab')">
-        <img src="Pic/recipe1.jpg" alt="Beef Kebab">
+        <img src="Pic/kabab.jpg" alt="Beef Kebab">
         <p>Beef Kebab</p>
     </a>
     </div>
@@ -406,7 +422,7 @@
     <div id="modal-beef-kebab" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeModal('modal-beef-kebab')">&times;</span>
-        <img src="Pic/recipe1.jpg" alt="Beef Kebab" class="modal-img">
+        <img src="Pic/kabab.jpg" alt="Beef Kebab" class="modal-img">
         
         <h2 class="modal-title">Beef Kebab</h2>
 

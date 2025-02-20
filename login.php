@@ -83,7 +83,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </form>
     </div>
     <div class="sign-up-link">
-        <p><a href="signin.php">SIGN UP Here.</a></p>
+        <p class="first">Don't have an account</p>
+        <a href="signin.php">SIGN UP</a>
+        <p class="second">Here</p>
     </div>
 </body>
 </html>
