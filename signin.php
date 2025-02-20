@@ -20,7 +20,7 @@ $message_pass=" ";
 $message_uasername=" ";
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $first_name = trim($_POST['first_name']);
-    $first_name = ucfirst($first_name);
+    $first_name = ucwords($first_name);
     $last_name = trim($_POST['last_name']);
     $last_name = ucfirst($last_name);
     $user_full_name = $first_name . " " . $last_name;
@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $len_pass=strlen($password);
 
     if(!($len_pass >= 8 && check_space(($password)) && check_substr($user_input,$password))){
-        $message_pass="Password must be at least 8 characters long, contain no spaces, and must not be part of the username.";
+        $message_pass="Password must be at least 8 characters .";
     }else{
     $hash_password = password_hash($password, PASSWORD_DEFAULT);
     $sql = "INSERT INTO user_info (full_name,username, user_password, email) VALUES (? ,? , ?, ?)";
@@ -97,7 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
             <?php echo "<p>". $message_uasername ."</p>"; ?>
             <label for="password">Password</label><br>
             <input type="password" name="userpassword" id="password" placeholder="Password" required title="Please enter your password"><br>
-            <span clase="message"><?php echo  $message_pass; ?></span>
+            <span class="message"><?php echo  $message_pass; ?></span>
             <input type="submit" name="submit" value="SIGN UP">
         </form>
     </nav>

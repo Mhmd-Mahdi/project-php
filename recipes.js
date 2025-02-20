@@ -1,5 +1,4 @@
 // Open Modal Function
-// Open Modal Function
 function openModal(recipeId, event) {
     event.preventDefault();  // Prevent the default anchor click behavior
 
@@ -11,7 +10,6 @@ function openModal(recipeId, event) {
         document.body.classList.add("modal-open");
     }
 }
-
 
 // Close Modal Function
 function closeModal(recipeId) {

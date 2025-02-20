@@ -32,9 +32,8 @@ try {
     <nav>
             <ul>
                 <li><a href="index.php"  class="active">Home</a></li>
-                <li><a href="recipes.php">Recipes</a></li>
-                <li><a href="about.php">About</a></li>
-                <li><a href="contact.php">Favorite</a></li>
+                <li><a href="recipes.php?all=1">Recipes</a></li>
+                <li><a href="favorite.php">Favorite</a></li>
             </ul>
         <div class="login">
             <?php 
@@ -71,7 +70,7 @@ try {
                  Discover easy-to-follow recipes, step-by-step instructions, and tips to help you<br>
                   create mouthwatering meals whether you're a beginner or
                    a seaned chef.</p>
-            <a href="recipes.php" class="btn">Explore Recipes</a>
+            <a href="recipes.php?all=1" class="btn">Explore Recipes</a>
         </section>
     </main>
     <img src="Pic/plate1.jpg" alt="Rotating Circle" class="circular-image">

@@ -1,0 +1,119 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('Pic/recipe222.jpg') no-repeat center center/cover; 
+    width: 100%;
+    object-fit: scale-down;
+    height: 200vh; /* Full viewport height */
+    overflow: hidden; /* Prevent scrolling */
+    background-color: rgb(5, 7, 9);
+    overflow-y: auto;  
+    background-attachment: fixed; 
+    overflow:auto;
+}
+
+
+/* Style for centering the image inside the modal */
+.modal-img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    max-height: 500px;  /* Adjust the max height if needed */
+    overflow: hidden;   /* Prevent image overflow */
+}
+
+.modal-img {
+    max-width: 100%;    /* Adjust the image to fit the container */
+    height: auto;
+}
+
+/* Modal styles */
+.modal {
+    display: none;      /* Initially hide modal */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 10%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    float: right;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Apply flexbox to the body to center its content */
+body {
+    display: flex;
+    justify-content: center;  /* Center horizontally */
+    align-items: center;      /* Center vertically */
+    height: 100vh;            /* Take up full viewport height */
+    margin: 0;                /* Remove default margin */
+    background-color: #f0f0f0; /* Optional: Light background color for the body */
+}
+
+/* Apply flexbox to the body to center its content */
+body {
+    display: flex;
+    justify-content: center;  /* Center horizontally */
+    align-items: center;      /* Center vertically */
+    height: 100vh;            /* Take up full viewport height */
+    margin: 0;                /* Remove default margin */
+    background-color: #f0f0f0; /* Optional: Light background color for the body */
+}
+
+/* Style the food-item div (make it larger) */
+.food-item {
+    width: 390px;
+    display: block;
+    text-align: center;
+    margin: 20px;
+    background-color: rgba(48, 48, 48, 0.5); /* Darker background with higher transparency */
+    border-radius: 12px; /* Rounded corners */
+    padding: 40px; /* Increase space around the content */
+    box-shadow: 0 8px 20px rgba(68, 68, 68, 0.3); /* Larger shadow with darker tone */
+    transition: transform 0.3s ease; /* Smooth transform on hover */
+}
+
+/* Hover effect for food-item (optional) */
+.food-item:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
+}
+
+/* Style the image to make it bigger (2x size) */
+.food-link img {
+    max-width: 200%;  /* Increase the size of the image */
+    height: auto;
+    border-radius: 12px; /* Optional: Rounded corners for the image */
+}
+
+/* Optional: Adjust the text size or styling inside the food-item */
+.food-item p {
+    font-size: 24px;  /* Make the text larger */
+    font-weight: bold;
+    color: whitesmoke;
+}

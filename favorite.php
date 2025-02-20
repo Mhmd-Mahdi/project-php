@@ -12,7 +12,12 @@ try {
 } catch (Exception $e) {
     die("Connection failed: " . $e->getMessage());
 }
-
+if(!isset($_SESSION["user_id"])) {
+$message="You must be sigin to add and recipes to favorite";
+$_SESSION['message']=$message;
+header("location: login.php");
+exit();
+}
 $stmt = $conn->prepare("SELECT recipe_id FROM favourite where username = ?");
 $stmt->bind_param("s" , $_SESSION['username']);
 $stmt->execute();
@@ -40,6 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['del_fav']) && isset($_
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="recipes.css">
+    <link rel="stylesheet" href="favorite.css">
     <title>Favorite recipes</title>
 
 </head>
@@ -51,15 +57,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['del_fav']) && isset($_
     Recipes</h2></pre>           
         </div>
         <nav>
-            <ul>
+            <ul align="center">
                 <li><a href="index.php">Home</a></li>
-                <li><a href="recipes.php" class="active1">Recipes</a></li>
-                <li><a href="about.php">About</a></li>
-                <li><a href="favorite.php">Favourite</a></li>
+                <li><a href="recipes.php?all=1" >Recipes</a></li>
+                <li><a href="favorite.php" class="active1">Favourite</a></li>
             </ul>
             </nav>
             </header>
-    <h4>My <span class="fav">Favorite</span>  Recipes</h4>
+           <h1 style="color: yellowgreen;" align="center">My Favorite Recipes</h1>
     <div class="food-grid">
     <?php while($row = $res->fetch_assoc()){?>
         <?php $stmt2 = $conn->prepare("SELECT * FROM recipes where recipe_id = ?");
@@ -95,7 +100,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['del_fav']) && isset($_
             </ul>
 
             <h3 class="modal-heading">Tips</h3>
-            <p><?php echo $row2['tips']; ?></p>
+            <p><?php 
+                
+                echo $row2['tips']; ?>
+            </p>
             <form action="favorite.php" method="post">
                 <input type="hidden" name="recipe_id" value="<?php echo $row['recipe_id']; ?>"/>
                 <input type="submit" name="del_fav" value="❤️ Remove From Favorites"/>
@@ -105,6 +113,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['del_fav']) && isset($_
   <?php } $stmt->close();
   $conn->close();?>
 </div>
+tips
 <script src="recipes.js"></script>
 </body>
 </html>

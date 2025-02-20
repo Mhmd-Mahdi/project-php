@@ -12,6 +12,14 @@ body {
     background-attachment: fixed; 
     overflow:auto;
 }
+.feedback_link a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-weight: bold;
+    color: yellowgreen;
+    position: relative;
+    bottom: -10px;
+}
 .user-box {
     margin-left: 4.6rem;
     background-color: orangered;

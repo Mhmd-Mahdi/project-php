@@ -22,7 +22,13 @@ body {
     font-weight: bold;
     animation: message 5s ease-in-out forwards;
     position: relative;
-    bottom: 25px;
+    bottom: 20px;
+}
+@keyframes message {
+    0% { opacity: 0; } 
+    20% { opacity: 1; } 
+    80% { opacity: 1; } 
+    100% { opacity: 0; visibility: hidden; }
 }
 nav {
     width: 100%;
