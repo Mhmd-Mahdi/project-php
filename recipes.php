@@ -1,41 +1,70 @@
-<?php
-    
-    session_start();
-    $db_server = "localhost";
-    $db_user = "root";
-    $db_pass = "";
-    $db_name = "users";
-    $conn = null;
+<?php 
+session_start();
+$db_server="localhost";
+$db_user="root";
+$db_pass="";
+$db_name="users";
 
-    try {
-        $conn = mysqli_connect($db_server, $db_user, $db_pass, $db_name);
-    } catch (mysqli_sql_exception) {
-        die("Can't Connect!");
-    }
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+try {
+    $conn = new mysqli($db_server, $db_user, $db_pass, $db_name);
+} catch (Exception $e) {
+    die("Connection failed: " . $e->getMessage());
+}
 
+if ((!isset($_GET['all']) && !isset($_GET['beef']) && !isset($_GET['chicken']) && !isset($_GET['dessert']) && !isset($_GET['fish'])) || isset($_GET['all'])){// if its the first time user enters page load all recipes , and if he clicks on all href laod all of them as well
+$stmt = $conn->prepare("SELECT * FROM recipes");
+}else if (isset($_GET['beef'])){
+$stmt = $conn->prepare("SELECT * FROM recipes WHERE food_type = 'beef'");
+}else if (isset($_GET['dessert'])){
+$stmt = $conn->prepare("SELECT * FROM recipes WHERE food_type = 'dessert'");
+}else if (isset($_GET['fish'])){
+$stmt = $conn->prepare("SELECT * FROM recipes WHERE food_type = 'fish'");
+}else if (isset($_GET['chicken'])){
+$stmt = $conn->prepare("SELECT * FROM recipes WHERE food_type = 'chicken'");
+}else{
+    header("Location:login.php");
+    exit();
+}
+
+
+
+$stmt->execute();
+$res = $stmt->get_result();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_fav']) && isset($_POST['recipe_id'])) {
+    $recipe_id = $_POST['recipe_id'];
+    $stmt4 = $conn->prepare("INSERT INTO favourite (recipe_id, username) VALUES (?, ?)");
+    $stmt4->bind_param("is", $recipe_id, $_SESSION['username']);
+    $stmt4->execute();
+    $stmt4->close();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="recipes.css">
+    <link rel = "stylesheet" href = "recipes.css">
+
     <title>Recipes</title>
 </head>
-
 <body>
 <header>
-    <div class="logo">
+        <div class="logo">
         <pre><h2> Quick & Tasty 
-    Recipes</h2></pre>
-    </div>
-    <nav class="header">
-        <ul>
-            <li><a href="index.php">Home</a></li>
-            <li><a href="recipes.php" class="active1">Recipes</a></li>
-            <li><a href="add.php">About</a></li>
-            <li><a href="contact.php">Favorite</a></li>
-        </ul>
+    Recipes</h2></pre>            
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.php">Home</a></li>
+                <li><a href="recipes.php" class="active1">Recipes</a></li>
+                <li><a href="add.php">About</a></li>
+                <li><a href="favorite.php">Favourite</a></li>
+            </ul>
+    <?php if (isset($_SESSION["in"]) && $_SESSION["in"] == true) { ?>
+    <h3>WELCOME <?php echo htmlspecialchars($_SESSION['user_full_name']); ?></h3>
+    <?php }else{ ?>
         <div class="login">
             <?php if (isset($_SESSION['login'])): ?>
                 <div class="user-box" onclick="toggleDropdown()">
@@ -50,278 +79,96 @@
                 <a href="signin.php" class="btn sign-in">Sign Up</a>
                 <a href="login.php" class="btn log-in">LogIn</a>
             <?php endif; ?>
-        </div>    
-    </nav>
-</header>
-<main>
-    <h1>Welcome to our Recipe Collection</h1>
-    <p>Discover delicious recipes that bring flavor and joy to your kitchen</p>
-</main>
+        </div>  
+    <?php } ?>
+        </nav>
+    </header>
+    <main>
+        <h1>Welcome to our Recipe Collection</h1>
+        <p>Discover delicious recipes that bring flavor and joy to your kitchen</p>
+    </main>
 
-<!-- User Info Modal -->
+    <!-- User Info Modal -->
 <div id="infoModal" class="modal">
-    <span class="close" onclick="closeModal()">&times;</span>
+    <span class="close" onclick="closeModal('infoModal')">&times;</span>
     <h2>User Info</h2>
     <p><strong>ID : </strong> <?php echo $_SESSION["user_id"] ?> </p>
     <p><strong>Full Name : </strong> <?php echo htmlspecialchars($_SESSION["full_name"]); ?></p>
     <p><strong>Email : </strong> <?php echo $_SESSION["email"] ?> </p>
     <p><strong>Joined : </strong> <?php echo $_SESSION["time"] ?> </p>
-    
 </div>
-
-<script>
-    function toggleDropdown() {
-        let dropdown = document.getElementById("userDropdown");
-        dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
-    }
-
-    function openInfoModal() {
-        document.getElementById("infoModal").style.display = "block";
-    }
-
-    function closeModal() {
-        document.getElementById("infoModal").style.display = "none";
-    }
-
-    // Close dropdown if clicked outside
-    window.onclick = function(event) {
-        if (!event.target.matches('.user-box')) {
-            let dropdown = document.getElementById("userDropdown");
-            if (dropdown.style.display === "block") {
-                dropdown.style.display = "none";
-            }
-        }
-    };
-</script>
+<!-- Recipe Modal-->
+<div id="recipeModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('recipeModal')">&times;</span>
+        <h2>Recipe Details</h2>
+        <p>Recipe content goes here...</p>
+    </div>
+</div>
 
 <div class="categories">
-    <a href="recipes.php">
-    <div class="category active" onclick="filterCategory('all')">All</div>
+<a href="recipes.php?all=1">
+<div class="category" style="<?php if(isset($_GET['all'])) { echo 'background-color: orangered; color: white;'; } ?>" onclick="filterCategory('all')">All</div>
     </a>
-    <a href="recipeschicken.php">
-    <div class="category" onclick="filterCategory('chicken')">Chicken</div>
+    <a href="recipes.php?chicken=1">
+    <div class="category" style="<?php if(isset($_GET['chicken'])) { echo 'background-color: orangered; color: white;'; } ?>" onclick="filterCategory('all')">Chicken</div>
     </a>
-    <a href="recipesbeef.php">
-    <div class="category" onclick="filterCategory('beef')">Beef</div>
+    <a href="recipes.php?beef=1">
+    <div class="category" style="<?php if(isset($_GET['beef'])) { echo 'background-color: orangered; color: white;'; } ?>" onclick="filterCategory('all')">Beef</div>
     </a>
-    <a href="recipesfish.php">
-    <div class="category" onclick="filterCategory('fish')">Fish</div>
+    <a href="recipes.php?fish=1">
+    <div class="category" style="<?php if(isset($_GET['fish'])) { echo 'background-color: orangered; color: white;'; } ?>" onclick="filterCategory('all')">Fish</div>
     </a>
-    <a href="recipesdessert.php">
-    <div class="category" onclick="filterCategory('dessert')">Dessert</div>
+    <a href="recipes.php?dessert=1">
+    <div class="category" style="<?php if(isset($_GET['dessert'])) { echo 'background-color: orangered; color: white;'; } ?>" onclick="filterCategory('all')">Dessert</div>
     </a>
 </div>
-
-    
 </div>
 
 
-<!--  Food Grid -->
-     <div class="food-grid">
-<!-- Chicken -->
-        <div class="food-item">
-            <a href="#modal" class="food-link">
-                <img src="Pic/recipe1.jpg" alt="Crispy Chicken">
-                <p>Crispy Chicken</p>
-            </a>
-        </div>
-        <div class="food-item">
-            <a href="#modal" class="food-link">
-                <img src="Pic/recipe22.jpg" alt="Fajitas">
-                <p>Fajitas</p>
-            </a>
-        </div>
-        
-        <div class="food-item">
-            <a href="#modal" class="food-link">
-                <img src="Pic/recipe22.jpg" alt=" Chicken Burger">
-                <p>Chicken Burger</p>
-            </a>
-        </div>
-
-        <div class="food-item">
-            <a href="#modal" class="food-link">
-                <img src="Pic/recipe22.jpg" alt="Grilled Chicken">
-                <p>Grilled Chicken</p>
-            </a>
-        </div>
-
-        <div class="food-item">
-            <a href="#modal" class="food-link">
-                <img src="Pic/recipe22.jpg" alt="Chicken Curry">
-                <p>Chicken Curry</p>
-            </a>
-        </div>
-
-        <div class="food-item">
-            <a href="#modal" class="food-link">
-                <img src="Pic/recipe22.jpg" alt="Chicken Alfredo">
-                <p>Chicken Alfredo</p>
-            </a>
-        </div>
-        <div class="food-item">
-            <a href="#modal" class="food-link">
-                <img src="Pic/recipe22.jpg" alt="Chicken Wings">
-                <p>Chicken Wings</p>
-            </a>
-        </div>
-        <div class="food-item">
-            <a href="#modal" class="food-link">
-                <img src="Pic/recipe22.jpg" alt="Roast Chicken">
-                <p>Roast Chicken</p>
-            </a>
-        </div>
-   
-<!-- Beef -->
-     <div class="food-item">
-            <a href="#modal" class="food-link">
-                <img src="Pic/recipe1.jpg" alt="Beef Burger">
-                <p>Beef Burger</p>
-            </a>
-        </div>
-        <div class="food-item">
-            <a href="#modal" class="food-link">
-                <img src="Pic/recipe1.jpg" alt="Steak">
-                <p>Steak</p>
-            </a>
-        </div>
-        <div class="food-item">
-            <a href="#modal" class="food-link">
-                <img src="Pic/recipe1.jpg" alt="Beef Tacos">
-                <p>Beef Tacos</p>
-            </a>
-        </div>
-        <div class="food-item">
-            <a href="#modal" class="food-link">
-                <img src="Pic/recipe1.jpg" alt="Meatballs">
-                <p>Meatballs</p>
-            </a>
-        </div>
-        <div class="food-item">
-            <a href="#modal" class="food-link">
-                <img src="Pic/recipe1.jpg" alt="Beef Stroganoff">
-                <p>Beef Stroganoff</p>
-            </a>
-        </div>
-        <div class="food-item">
-            <a href="#modal" class="food-link">
-                <img src="Pic/recipe1.jpg" alt="Beef Stew">
-                <p>Beef Stew</p>
-            </a>
-        </div>
-        <div class="food-item">
-            <a href="#modal" class="food-link">
-                <img src="Pic/recipe1.jpg" alt="Roast Beef">
-                <p>Roast Beef</p>
-            </a>
-        </div>
-        <div class="food-item">
-            <a href="#modal" class="food-link">
-                <img src="Pic/recipe1.jpg" alt=" Beef Kebab">
-                <p> Beef Kebab</p>
-            </a>
-        </div>     
-        <div class="food-item">
-            <a href="#modal" class="food-link">
-                <img src="Pic/recipe1.jpg" alt="Grilled Salmon">
-                <p>Grilled Salmon</p>
-            </a>
-        </div>
-        <div class="food-item">
-            <a href="#modal" class="food-link">
-                <img src="Pic/recipe1.jpg" alt="Fish Tacos">
-                <p>Fish Tacos</p>
-            </a>
-        </div>
-        <div class="food-item">
-            <a href="#modal" class="food-link">
-                <img src="Pic/recipe1.jpg" alt="Fish & Chips">
-                <p>Fish & Chips</p>
-            </a>
-        </div>
-        <div class="food-item">
-            <a href="#modal" class="food-link">
-                <img src="Pic/recipe1.jpg" alt="Sushi">
-                <p>Sushi</p>
-            </a>
-        </div>
-        <div class="food-item">
-            <a href="#modal" class="food-link">
-                <img src="Pic/recipe1.jpg" alt="Ceviche">
-                <p>Ceviche</p>
-            </a>
-        </div>
-        <div class="food-item">
-            <a href="#modal" class="food-link">
-                <img src="Pic/recipe1.jpg" alt="Fish Curry">
-                <p>Fish Curry</p>
-            </a>
-        </div>
-        <div class="food-item">
-            <a href="#modal" class="food-link">
-                <img src="Pic/recipe1.jpg" alt="Smoked Salmon">
-                <p>Smoked Salmon</p>
-            </a>
-        </div>
-        <div class="food-item">
-            <a href="#modal" class="food-link">
-                <img src="Pic/recipe1.jpg" alt="Baked Tilapia">
-                <p>Baked Tilapia</p>
-            </a>
-        </div>
-
-   
-<!-- Dessert -->
+<!-- HTML Part -->
+<div class="food-grid">
+  <?php while($row = $res->fetch_assoc()){ ?>
     <div class="food-item">
-        <a href="#modal" class="food-link">
-        <img src="Pic/recipe1.jpg" alt="Chocolate Cake">
-        <p>Chocolate Cake</p>
-        </a>
-    </div>
-    <div class="food-item">
-        <a href="#modal" class="food-link">
-        <img src="Pic/recipe1.jpg" alt="Ice Cream">
-        <p>Ice Cream</p>
-        </a>
-    </div>
-    <div class="food-item">
-        <a href="#modal" class="food-link">
-        <img src="Pic/recipe1.jpg" alt="Tiramisu">
-        <p>Tiramisu</p>
-        </a>
-    </div>
-    <div class="food-item">
-        <a href="#modal" class="food-link">
-        <img src="Pic/recipe1.jpg" alt="Cheesecake">
-        <p>Cheesecake</p>
-        </a>
-    </div>
-    <div class="food-item">
-        <a href="#modal" class="food-link">
-        <img src="Pic/recipe1.jpg" alt="Brownies">
-        <p>Brownies</p>
-        </a>
-    </div>
-    <div class="food-item">
-        <a href="#modal" class="food-link">
-        <img src="Pic/recipe1.jpg" alt="Apple Pie">
-        <p>Apple Pie</p>
-        </a>
-    </div>
-    <div class="food-item">
-        <a href="#modal" class="food-link">
-        <img src="Pic/recipe1.jpg" alt="Donuts">
-        <p>Donuts</p>
-        </a>
-    </div>
-    <div class="food-item">
-    <a href="#modal" class="food-link">
-        <img src="Pic/recipe1.jpg" alt="Crème Brûlée">
-        <p>Crème Brûlée</p>
-    </a>
+   <a href="#modal-<?php echo $row['recipe_id']; ?>" class="food-link" onclick="openModal('<?php echo $row['recipe_id']; ?>', event)">
+    <img src="<?php echo $row['image_path']; ?>" alt="Recipe">
+    <p><?php echo $row['recipe_name']; ?></p>
+</a>
     </div>
 
-</div> 
+    <div id="modal-<?php echo $row['recipe_id']; ?>" class="modal">
+        <div class="modal-content">
+        <span class="close" onclick="closeModal('<?php echo $row['recipe_id']; ?>')">&times;</span>
+            <img src="<?php echo $row['image_path']; ?>" alt="Beef Recipe" class="modal-img">
+            <h2 class="modal-title"><?php echo $row['recipe_name']; ?></h2>
 
+            <h3 class="modal-heading">Ingredients</h3>
+            <ul class="modal-list">
+                <?php 
+                $stmt2 = $conn->prepare("SELECT * FROM ingredients WHERE recipe_id = ?");
+                $stmt2->bind_param("i", $row['recipe_id']);
+                $stmt2->execute();
+                $res2 = $stmt2->get_result();
+                
+                while ($row2 = $res2->fetch_assoc()){
+                    echo "<li>{$row2['description']}</li>";
+                }
+                ?>
+            </ul>
+
+            <h3 class="modal-heading">Tips</h3>
+            <p><?php echo $row['tips']; ?></p>
+
+            <!-- Add to Favorites Button -->
+            <form action="recipesbeef.php" method="post">
+                <input type="hidden" name="recipe_id" value="<?php echo $row['recipe_id']; ?>"/>
+                <input type="submit" name="add_fav" value="❤️ Add to Favorites"/>
+            </form>
+        </div>
+    </div>
+  <?php } $stmt->close();
+  $conn->close();?>
+</div>
+<script src="recipes.js"></script>
 </body>
 </html>
