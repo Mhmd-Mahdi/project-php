@@ -14,7 +14,10 @@ try {
 } catch (mysqli_sql_exception) {
     echo "<div class='error-message'>Can't Connect!</div>";
 }
-
+if (isset($_SESSION['message'])) {
+    echo "<script>alert('" . $_SESSION['message'] . "');</script>";
+    unset($_SESSION['message']);
+}
 $message_username =" ";
 $message_password =" ";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

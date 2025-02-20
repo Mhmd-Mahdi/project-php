@@ -31,7 +31,7 @@
             <ul>
                 <li><a href="index.php">Home</a></li>
                 <li><a href="recipes.php" class="active1">Recipes</a></li>
-                <li><a href="about.php">About</a></li>
+                <li><a href="add.php">About</a></li>
                 <li><a href="contact.php">Contact</a></li>
             </ul>
     <?php if (isset($_SESSION["in"]) && $_SESSION["in"] == true) { ?>

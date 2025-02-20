@@ -10,7 +10,7 @@
     try {
         $conn = mysqli_connect($db_server, $db_user, $db_pass, $db_name);
     } catch (mysqli_sql_exception) {
-        echo "<div class='error-message'>Can't Connect!</div>";
+        die("Can't Connect!");
     }
 
 ?>
@@ -33,7 +33,7 @@
         <ul>
             <li><a href="index.php">Home</a></li>
             <li><a href="recipes.php" class="active1">Recipes</a></li>
-            <li><a href="about.php">About</a></li>
+            <li><a href="add.php">About</a></li>
             <li><a href="contact.php">Contact</a></li>
         </ul>
         <div class="login">
