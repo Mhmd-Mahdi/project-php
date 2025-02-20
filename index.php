@@ -34,7 +34,7 @@ try {
                 <li><a href="index.php"  class="active">Home</a></li>
                 <li><a href="recipes.php">Recipes</a></li>
                 <li><a href="about.php">About</a></li>
-                <li><a href="contact.php">Contact</a></li>
+                <li><a href="contact.php">Favorite</a></li>
             </ul>
         <div class="login">
             <?php 

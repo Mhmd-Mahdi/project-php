@@ -24,7 +24,7 @@ session_start();
                 <li><a href="index.php">Home</a></li>
                 <li><a href="recipes.php" class="active1">Recipes</a></li>
                 <li><a href="about.php">About</a></li>
-                <li><a href="favorite.php">Contact</a></li>
+                <li><a href="favorite.php">Favorite</a></li>
             </ul>
             </nav>
             </header>
