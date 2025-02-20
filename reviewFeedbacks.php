@@ -6,12 +6,10 @@ $db_user = "root";
 $db_pass = "";
 $db_name = "users";
 
-mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 try {
-    $conn = new mysqli($db_server, $db_user, $db_pass, $db_name);
-} catch (Exception $e) {
-    error_log("Database Connection Error: " . $e->getMessage());
-    die("An error occurred. Please try again later.");
+    $conn = mysqli_connect($db_server, $db_user, $db_pass, $db_name);
+} catch (mysqli_sql_exception) {
+    echo "<div class='error-message'>Can't Connect!</div>";
 }
 $recipe_id = $_GET['recipe'];
 

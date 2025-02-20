@@ -41,3 +41,8 @@ document.querySelectorAll('.close').forEach((closeButton) => {
         closeModal(recipeId);  // Close the modal
     });
 });
+
+function toggleDropdown() {
+    let dropdown = document.getElementById("userDropdown");
+    dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+}

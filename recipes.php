@@ -102,7 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['feedBackssub'])) {
                     <div class="user-box" onclick="toggleDropdown()">
                         <?php echo htmlspecialchars($_SESSION["full_name"]); ?>
                         <div class="user-dropdown" id="userDropdown">
-                            <a onclick="openInfoModal()">User Info</a>
+                            <a href="user_info.php">User Info</a>
                             <a href="delete_account.php" onclick="return confirm('Are you sure?');">Delete Account</a>
                             <a href="logout.php">Logout</a>
                         </div>
@@ -121,14 +121,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['feedBackssub'])) {
 </main>
 
 <!-- User Info Modal -->
-<div id="infoModal" class="modal">
-    <span class="close" onclick="closeModal('infoModal')">&times;</span>
-    <h2>User Info</h2>
-    <p><strong>ID : </strong> <?php echo $_SESSION["user_id"] ?> </p>
-    <p><strong>Full Name : </strong> <?php echo htmlspecialchars($_SESSION["full_name"]); ?></p>
-    <p><strong>Email : </strong> <?php echo $_SESSION["email"] ?> </p>
-    <p><strong>Joined : </strong> <?php echo $_SESSION["time"] ?> </p>
-</div>
+
 <!-- Recipe Modal-->
 <div id="recipeModal" class="modal">
     <div class="modal-content">
