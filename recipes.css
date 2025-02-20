@@ -299,6 +299,9 @@ a.active1{
     height: auto;
     border-radius: 5px;
 }
+.modal-open {
+    overflow: hidden;
+}
 
 /* Textarea styling */
 textarea {

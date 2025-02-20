@@ -1,31 +1,23 @@
 <?php
 session_start();
 
-// Ensure session array for favorites is initialized correctly
 if (!isset($_SESSION["favorites"])) {
-    $_SESSION["favorites"] = [];  // Initialize as an empty array
+    $_SESSION["favorites"] = [];
 }
-
-// Debugging: Check if POST data is coming through
 var_dump($_POST);
-
 if (isset($_POST["recipe_name"]) && isset($_POST["recipe_image"]) && isset($_POST["recipe_ingredients"]) && isset($_POST["recipe_tips"])) {
     $recipe_name = htmlspecialchars(trim($_POST["recipe_name"]));
     $recipe_image = htmlspecialchars(trim($_POST["recipe_image"]));
     $recipe_ingredients = htmlspecialchars(trim($_POST["recipe_ingredients"]));
     $recipe_tips = htmlspecialchars(trim($_POST["recipe_tips"]));
-
-    // Store the full recipe data (name, image, ingredients, tips)
     $recipe_data = [
         'name' => $recipe_name,
         'image' => $recipe_image,
         'ingredients' => $recipe_ingredients,
         'tips' => $recipe_tips
     ];
-
-    // Check if the favorites session is an array
     if (is_array($_SESSION["favorites"])) {
-        // Check if the recipe is already in the favorites array
+        // Check 
         $is_duplicate = false;
 
         // Iterate through each favorite and check if it matches the new recipe
