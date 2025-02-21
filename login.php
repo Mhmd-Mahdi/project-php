@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($stmt->num_rows > 0) {
                 $stmt->bind_result($user_id,$db_username, $user_full_name, $hashed_password);
                 $stmt->fetch();
-                // Verify the password
+        
                 if (password_verify($user_password, $hashed_password)) {
                     $query = "SELECT user_id FROM user_info WHERE username = ?";
                     $stmt = $conn->prepare($query);

@@ -135,12 +135,12 @@ a.active{
     width: 400px; 
     height: 400px;
     border-radius: 50%; 
-    object-fit: cover; /* Ensures the image fits properly */
-    animation: rotate 45s linear infinite; /* Apply rotation animation */
+    object-fit: cover; 
+    animation: rotate 45s linear infinite; 
     position: absolute;
-    top: 150px;  /* Move down */
-    left: 750px; /* Move right */
-    transform: scale(4); /* Permanent zoom in by 20% */
+    top: 150px;  
+    left: 750px; 
+    transform: scale(4); 
 
 }
 

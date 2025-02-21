@@ -1,6 +1,5 @@
 <?php
 session_start();
-// Database connection
 $db_server = "localhost";
 $db_user = "root";
 $db_pass = "";
@@ -73,12 +72,12 @@ body {
     justify-content: center;
 }
 .feedback-box {
-    background-color: #e0e0e0; /* Light gray background */
+    background-color: #e0e0e0; 
     padding: 20px;
-    border-radius: 10px; /* Rounded corners */
-    max-width: 500px; /* Limit width */
-    margin: 20px auto; /* Center on page */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow */
+    border-radius: 10px; 
+    max-width: 500px; 
+    margin: 20px auto; 
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
 }
 
 .feedback-box h3 {
@@ -92,7 +91,7 @@ body {
 }
 
 .feedback-box li {
-    background: #fff; /* White background for individual feedback */
+    background: #fff; 
     padding: 10px;
     border-radius: 5px;
     margin-bottom: 10px;
@@ -107,7 +106,6 @@ body {
 }
 
 
-/* Modal Content */
 .modal-content {
     background-color: gray;
     padding: 20px;
@@ -118,16 +116,15 @@ body {
     padding: 20px;
     border-radius: 20px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    position: absolute; /* or fixed */
+    position: absolute; 
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Centering */
+    transform: translate(-50%, -50%); 
 }
 img {
     border-radius: 15px;
 }
 
-/* Close button */
 .close {
     color: #aaa;
     font-size: 28px;
@@ -141,11 +138,7 @@ img {
 .title {
     color: yellowgreen;
 }
-.position {
-    position: relative;
-    left: -50px;
-    right: 40px;
-}
+
 
 </style>
 
@@ -174,7 +167,7 @@ img {
             $stmt2->bind_param("i", $row['recipe_id']);
             $stmt2->execute();
             $res2 = $stmt2->get_result();
-            echo "<ul class='position' type='disc'>";
+            echo "<ul style=' position: relative; left: -49px; right: 40px;list-style-type: none;   '>";
             while ($row2 = $res2->fetch_assoc()) {
                 echo "<li >" . htmlspecialchars($row2['description']) . "</li>";
             }
@@ -203,7 +196,7 @@ img {
             <?php if ($feedbackres->num_rows > 0) { ?>
                 <ul>
                     <?php while ($feedbackRow = $feedbackres->fetch_assoc()) { ?>
-                        <li>
+                        <li style="color: black;">
                             <strong><?php echo htmlspecialchars($feedbackRow['username']); ?>:</strong> 
                             <?php echo htmlspecialchars($feedbackRow['description']); ?>
                         </li>

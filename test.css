@@ -1,4 +1,3 @@
-/* the box of the user */
 .user-box {
     content: "👤";
     position: relative;
@@ -44,8 +43,6 @@
 .user-dropdown a:hover {
     background-color: #c39797;
 }
-
-/* User Info Modal */
 
 .modal {
     display: none;

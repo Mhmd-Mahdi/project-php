@@ -9,7 +9,6 @@
 </head>
 <body>
     <div class="user-box">
-        <?php echo print_r($_COOKIE) ?>
         <a href="recipes.php?all=1">X</a>
         <h2>User Info</h2>
         <p><strong>ID : </strong> <?php echo $_SESSION["user_id"] ?> </p>

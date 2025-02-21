@@ -1,7 +1,5 @@
 <?php
 session_start();
-
-// Database connection
 $db_server = "localhost";
 $db_user = "root";
 $db_pass = "";
@@ -119,9 +117,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['feedBackssub'])) {
     <h1>Welcome to our Recipe Collection</h1>
 </main>
 
-<!-- User Info Modal -->
-
-<!-- Recipe Modal-->
 <div id="recipeModal" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeModal('recipeModal')">&times;</span>
@@ -168,7 +163,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['feedBackssub'])) {
                 <h2><?php echo htmlspecialchars($row['recipe_name']); ?></h2>
 
                 <h3>Ingredients</h3>
-                <ul>
+                <ul class="position" >
                     <?php 
                     $stmt2 = $conn->prepare("SELECT `description` FROM ingredients WHERE recipe_id = ?");
                     $stmt2->bind_param("i", $row['recipe_id']);

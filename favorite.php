@@ -132,7 +132,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['del_fav']) && isset($_
   <?php } $stmt->close();
   $conn->close();?>
 </div>
-tips
 <script src="recipes.js"></script>
 </body>
 </html>

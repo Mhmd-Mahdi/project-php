@@ -93,8 +93,8 @@ h2 {
 
 
 .log-in {
-    background: rgba(24, 2, 2, 0.378); /* Semi-transparent background */
-    backdrop-filter: blur(3px); /* Adds the blur effect */
+    background: rgba(24, 2, 2, 0.378);
+    backdrop-filter: blur(3px);
     padding: 40px;
     border-radius: 20px;
     box-shadow: 0 15px 35px rgba(12, 11, 11, 0.2);

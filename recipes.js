@@ -1,19 +1,18 @@
 // Open Modal Function
 function openModal(recipeId, event) {
-    event.preventDefault();  // Prevent the default anchor click behavior
-
-    console.log("Opening modal for recipe: " + recipeId);  // Debugging log
+    event.preventDefault();  
+    console.log("Opening modal for recipe: " + recipeId); 
 
     let modal = document.getElementById("modal-" + recipeId);
     if (modal) {
-        modal.style.display = "block";  // Show the modal
+        modal.style.display = "block";  
         document.body.classList.add("modal-open");
     }
 }
 
 // Close Modal Function
 function closeModal(recipeId) {
-    console.log("Closing modal for recipe: " + recipeId);  // Debugging log
+    console.log("Closing modal for recipe: " + recipeId);  
 
     let modal = document.getElementById("modal-" + recipeId);
     if (modal) {
@@ -27,8 +26,8 @@ window.onclick = function (event) {
     // Check all modal elements
     document.querySelectorAll(".modal").forEach((modal) => {
         if (event.target === modal) {
-            let recipeId = modal.id.replace("modal-", "");  // Get recipe ID from modal ID
-            closeModal(recipeId);  // Close the modal by recipeId
+            let recipeId = modal.id.replace("modal-", ""); 
+            closeModal(recipeId); 
         }
     });
 };
@@ -44,5 +43,5 @@ document.querySelectorAll('.close').forEach((closeButton) => {
 
 function toggleDropdown() {
     let dropdown = document.getElementById("userDropdown");
-    dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
 }

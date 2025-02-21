@@ -109,7 +109,7 @@ nav ul li a {
 
 .login {
     margin-top: -1rem;
-    margin-left: 45rem; /* Add space between nav links and buttons */
+    margin-left: 45rem;
 }
 .login a {
    
@@ -127,7 +127,7 @@ nav ul li a {
 
 .sign-in:hover {
     color: orangered;
-    border-color: orangered; /* Change border on hover */
+    border-color: orangered; 
     transition: 0.5s;
    
 }
@@ -144,7 +144,7 @@ nav ul li a {
 .log-in:hover {
     background-color:transparent;
     border-color: orangered;
-    color:orangered; /* Change border on hover */
+    color:orangered; 
     transition: 0.5s;
     
 }
@@ -233,9 +233,8 @@ a.active1{
     font-weight: bold;
 }
 
-/* Hover effect */
 .food-item:hover img {
-    transform: scale(1.1);  /* Slight zoom-in effect */
+    transform: scale(1.1);  
 }
 
 .food-link {
@@ -243,9 +242,6 @@ a.active1{
     text-decoration: none;
     color: inherit;
 }
-
-/* Modal Styling */
-
 
 .close-btn {
     position: absolute;
@@ -261,7 +257,6 @@ a.active1{
     margin-top: 20px;
 }
 
-/* Scrollable content inside modal */
 .recipe-content {
     max-height: 400px;
     overflow-y: auto;
@@ -275,34 +270,33 @@ a.active1{
     padding: 20px;
 }
 
-/* Modal background styling */
 .modal {
-    display: none; /* Hidden by default */
+    display: none; 
     position: fixed;
-    z-index: 1; /* Ensure modal is above other content */
+    z-index: 1; 
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
    
-    overflow: hidden; /* Prevent scrolling on background */
+    overflow: hidden; 
 }
 
-/* Content inside the modal */
+
 .modal-content {
-    background-color: #3a3131ea; /* Light gray background */
+    background-color: #3a3131ea; 
     padding: 20px;
-    border-radius: 8px; /* Rounded corners for the modal */
+    border-radius: 8px; 
     width: 80%;
     max-width: 600px;
-    max-height: 80vh; /* Limit the modal's height */
-    overflow-y: auto; /* Allow scrolling inside the modal if content overflows */
+    max-height: 80vh; 
+    overflow-y: auto; 
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     position: relative;
     margin: auto;
     top: 50%;
-    transform: translateY(-50%); /* This keeps it vertically centered */
+    transform: translateY(-50%); 
 }
 .modal-content h3 {
     color: orangered;
@@ -310,7 +304,7 @@ a.active1{
 .modal-content ul li {
     color : #fff;
 }
-/* Image in the modal */
+
 .modal img {
     width: 100%;
     height: auto;
@@ -320,7 +314,6 @@ a.active1{
     overflow: hidden;
 }
 
-/* Textarea styling */
 textarea {
     width: 100%;
     padding: 10px;
@@ -332,7 +325,6 @@ textarea {
     height: 100px;
 }
 
-/* Close button */
 .close {
     color: #aaa;
     float: right;
@@ -347,14 +339,11 @@ textarea {
     cursor: pointer;
 }
 
-/* Disable background scroll when modal is open */
 body.modal-open {
-    overflow: hidden; /* Prevent scrolling of the background page */
+    overflow: hidden; 
 }
-
-/* Modal content should have its own scrolling if necessary */
 .modal-content {
-    overflow-y: auto; /* Allow only the modal content to scroll */
+    overflow-y: auto; 
     -webkit-overflow-scrolling: touch;
 }
 
@@ -381,4 +370,10 @@ body.modal-open {
 .head1{
     color: white;
     font-size: 20px;
+}
+.position {
+    position: relative;
+    left: -25px;
+    right: 40px;
+    list-style-type: none;
 }
