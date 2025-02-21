@@ -131,6 +131,10 @@ nav ul li a {
     transition: 0.5s;
    
 }
+.tips {
+    color: #fff;
+}
+
 .log-in {
     background-color:orangered;
     color: black;
@@ -300,7 +304,12 @@ a.active1{
     top: 50%;
     transform: translateY(-50%); /* This keeps it vertically centered */
 }
-
+.modal-content h3 {
+    color: orangered;
+}
+.modal-content ul li {
+    color : #fff;
+}
 /* Image in the modal */
 .modal img {
     width: 100%;

@@ -92,7 +92,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['feedBackssub'])) {
             <li><a href="index.php">Home</a></li>
             <li><a href="recipes.php?all=1" class="active1">Recipes</a></li>
             <li><a href="favorite.php">Favourite</a></li>
-
         </ul>
         <?php if (isset($_SESSION["in"]) && $_SESSION["in"] == true) { ?>
             <h3>WELCOME <?php echo htmlspecialchars($_SESSION['user_full_name']); ?></h3>

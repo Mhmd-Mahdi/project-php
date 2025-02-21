@@ -57,14 +57,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['del_fav']) && isset($_
     Recipes</h2></pre>           
         </div>
         <nav>
-            <ul align="center">
-                <li><a href="index.php">Home</a></li>
-                <li><a href="recipes.php?all=1" >Recipes</a></li>
-                <li><a href="favorite.php" class="active1">Favourite</a></li>
-            </ul>
-            </nav>
-            </header>
-           <h1 style="color: yellowgreen;" align="center">My Favorite Recipes</h1>
+        <ul>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="recipes.php?all=1" >Recipes</a></li>
+            <li><a href="favorite.php" class="active1">Favourite</a></li>
+        </ul>
+        <?php if (isset($_SESSION["in"]) && $_SESSION["in"] == true) { ?>
+            <h3>WELCOME <?php echo htmlspecialchars($_SESSION['user_full_name']); ?></h3>
+        <?php } else { ?>
+            <div class="login">
+                <?php if (isset($_SESSION['login'])): ?>
+                    <div class="user-box" onclick="toggleDropdown()">
+                        <?php echo htmlspecialchars($_SESSION["full_name"]); ?>
+                        <div class="user-dropdown" id="userDropdown">
+                            <a href="user_info.php">User Info</a>
+                            <a href="delete_account.php" onclick="return confirm('Are you sure?');">Delete Account</a>
+                            <a href="logout.php">Logout</a>
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <a href="signin.php" class="btn sign-in">Sign Up</a>
+                    <a href="login.php" class="btn log-in">LogIn</a>
+                <?php endif; ?>
+            </div>  
+        <?php } ?>
+    </nav>
+        </header>
+           <h1 style="color: green;" align="center">My Favorite Recipes</h1>
     <div class="food-grid">
     <?php while($row = $res->fetch_assoc()){?>
         <?php $stmt2 = $conn->prepare("SELECT * FROM recipes where recipe_id = ?");

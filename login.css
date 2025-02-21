@@ -109,7 +109,7 @@ h2 {
     }
 }
 
-/* Decorative elements */
+
 .log-in::before {
     content: "👤";
     font-size: 40px;
@@ -131,17 +131,17 @@ h2 {
     color: orangered;
     position: absolute;
     left: 630px;
-    top: 596px;
+    top: 613px;
 }
 .first{
     color: white;
     position: absolute;
     left: 467px;
-    top: 580px;
+    top: 596px;
 }
 .second{
     color:white;
     position: absolute;
     left: 695px;
-    top: 580px;
+    top: 596px;
 }
